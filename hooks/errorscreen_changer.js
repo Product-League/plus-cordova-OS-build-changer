@@ -210,23 +210,6 @@ function checkIfFinished() {
         setTimeout(checkIfFinished, 100);
 }
 
-
-switch (platform) {
-    case 'android':
-        platformPath = path.join(platformPath, platform, "app", "src", "main", "assets", "www");
-        console.log(platformPath);
-        break;
-    case 'ios':
-        platformPath = path.join(platformPath, platform, "www");
-        break;
-    case 'browser':
-        platformPath = path.join(platformPath, platform, "www");
-        break;
-    default:
-        console.error('Hook currently supports only Android and iOS');
-        return;
-}
-
     const foldersToProcess = ['scripts', 'img', 'css'];
     processFiles(context.opts.projectRoot + confs.androidPath, true);
 
