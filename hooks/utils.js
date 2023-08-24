@@ -46,10 +46,13 @@ function indexJSChanger(path) {
 }
 
 function minifier (dirPath, fileExtension) {
-    fs.readdirSync(dirPath).filter(file => file.endsWith(fileExtension)).forEach(file => {
-        minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
-            fs.writeFileSync(path.join(dirPath, file), minifiedFile);
-        })
+    fs.readdirSync(dirPath).filter(file => 
+        file.endsWith(fileExtension)).forEach(file => {
+            if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+                minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
+                    fs.writeFileSync(path.join(dirPath, file), minifiedFile);
+                })
+            }
     })
 }
 
