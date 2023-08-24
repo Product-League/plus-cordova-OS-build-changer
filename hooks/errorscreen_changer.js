@@ -10,5 +10,7 @@ module.exports = function (context) {
     utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/ECOP_Mobile_PS.index.js");
     utils.minifier(context.opts.projectRoot + confs.androidPath + "scripts", '.js');
     utils.minifier(context.opts.projectRoot + confs.androidPath + "css", '.css');
+    utils.minifier(context.opts.projectRoot + confs.androidPath, '.html');
+    utils.minifier(context.opts.projectRoot + confs.androidPath, '.js');
 
 }
