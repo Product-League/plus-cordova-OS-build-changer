@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path'),
-UglifyJS = require('uglify-js'),
-CleanCSS = require('clean-css'),
-imagemin = require('imagemin'),
-imageminSvgo = require('imagemin-svgo'),
-imageminJpegtran = require('imagemin-jpegtran'),
-imageminGifsicle = require('imagemin-gifsicle'),
-imageminOptipng = require('imagemin-optipng'),
-htmlMinify = require('html-minifier').minify,
+UglifyJS = import('uglify-js'),
+CleanCSS = import('clean-css'),
+imagemin = import('imagemin'),
+imageminSvgo = import('imagemin-svgo'),
+imageminJpegtran = import('imagemin-jpegtran'),
+imageminGifsicle = import('imagemin-gifsicle'),
+imageminOptipng = import('imagemin-optipng'),
+htmlMinify = import('html-minifier').minify,
 cssOptions = {
     keepSpecialComments: 0
 },
