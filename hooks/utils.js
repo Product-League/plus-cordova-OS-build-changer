@@ -22,8 +22,33 @@ function errorFileReplacer(path, content, textToReplace, replacementText) {
 }
 
 
+function indexReplacer(path, content) {
+    content = content.replace('<script type="text/javascript" src="scripts/OutSystemsManifestLoader.js', '<script async type="text/javascript" src="scripts/OutSystemsManifestLoader.js');
+    //content = content.replace('<script type="text/javascript" src="scripts/OutSystems.js', '<script async type="text/javascript" src="scripts/OutSystems.js');
+    content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactView.js', '<script async type="text/javascript" src="scripts/OutSystemsReactView.js');
+    content = content.replace('<script type="text/javascript" src="scripts/cordova.js', '<script async type="text/javascript" src="scripts/cordova.js');
+    content = content.replace('<script type="text/javascript" src="scripts/Debugger.js', '<script async type="text/javascript" src="scripts/Debugger.js');
+    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_PS.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_PS.appDefinition.js');
+    content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactWidgets.js', '<script async type="text/javascript" src="scripts/OutSystemsReactWidgets.js');
+    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_PS.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_PS.index.js')
+    //content = content.replace('<script type="text/javascript" src="scripts/ONEConferenceMobile.appDefinition.js', '<script async type="text/javascript" src="scripts/ONEConferenceMobile.appDefinition.js')
+    content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
+    fs.writeFileSync(path, content, "utf-8");
+}
+
+function indexJSChanger(path) {
+    let indexjs = fs.readFileSync(path, "utf-8");
+    indexjs = indexjs.replace(', NullDebugger', "");
+    indexjs = indexjs.replace(', "OutSystems/ClientRuntime/NullDebugger"', "");
+    fs.writeFileSync(path, indexjs, 'utf-8');
+}
+
+
+
 module.exports = {
     getConfigs,
     readErrorFile,
-    errorFileReplacer
+    errorFileReplacer,
+    indexReplacer,
+    indexJSChanger
 }
