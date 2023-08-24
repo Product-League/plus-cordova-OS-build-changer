@@ -11,4 +11,4 @@ const installDependencies = (dependencies) =>{
   });
 }
 
-installDependencies(['minify'])
+installDependencies(['minify@9.0.0'])
