@@ -49,6 +49,7 @@ function minifier (dirPath, fileExtension) {
     fs.readdirSync(dirPath).filter(file => 
         file.endsWith(fileExtension)).forEach(file => {
             if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+                console.log("Minifying File: " + file);
                 minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
                     fs.writeFileSync(path.join(dirPath, file), minifiedFile);
                 })
