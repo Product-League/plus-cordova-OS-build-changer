@@ -45,15 +45,15 @@ function indexJSChanger(path) {
     fs.writeFileSync(path, indexjs, 'utf-8');
 }
 
-function minifier (dirPath, fileExtension) {
+function minifier (dirPath, fileExtension, options) {
     fs.readdirSync(dirPath).filter(file => 
         file.endsWith(fileExtension)).forEach(file => {
-            if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+            //if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
                 console.log("Minifying File: " + file);
-                minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
+                minify(path.join(dirPath, file), options).then(minifiedFile => {
                     fs.writeFileSync(path.join(dirPath, file), minifiedFile);
                 })
-            }
+            //}
     })
 }
 
