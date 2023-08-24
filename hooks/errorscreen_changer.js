@@ -9,8 +9,8 @@ module.exports = function (context) {
     utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.errorFile, indexFileContent);
     utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/ECOP_Mobile_PS.index.js");
     utils.minifier(context.opts.projectRoot + confs.androidPath + "scripts", '.js', {js: true});
-    /*utils.minifier(context.opts.projectRoot + confs.androidPath + "css", '.css', {css: true} );
-    utils.minifier(context.opts.projectRoot + confs.androidPath + 'img', '.jpg');
+    utils.minifier(context.opts.projectRoot + confs.androidPath + "css", '.css', {css: true} );
+    /*utils.minifier(context.opts.projectRoot + confs.androidPath + 'img', '.jpg');
     utils.minifier(context.opts.projectRoot + confs.androidPath + 'img', '.png');
     utils.minifier(context.opts.projectRoot + confs.androidPath + 'img', '.gif');
     utils.minifier(context.opts.projectRoot + confs.androidPath + 'img', '.svg');*/
