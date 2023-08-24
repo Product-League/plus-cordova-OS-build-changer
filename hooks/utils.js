@@ -1,4 +1,6 @@
 const fs = require('fs');
+const path = require('path');
+const minify = require('minify')
 
 //Initial configs
 const configs = {
@@ -43,6 +45,13 @@ function indexJSChanger(path) {
     fs.writeFileSync(path, indexjs, 'utf-8');
 }
 
+function minifier (dirPath, fileExtension) {
+    fs.readdirSync(dirPath).filter(file => file.endsWith(fileExtension)).forEach(file => {
+        minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
+            fs.writeFileSync(path.join(dirPath, file), minifiedFile);
+        })
+    })
+}
 
 
 module.exports = {
@@ -50,5 +59,6 @@ module.exports = {
     readErrorFile,
     errorFileReplacer,
     indexReplacer,
-    indexJSChanger
+    indexJSChanger,
+    minifier
 }
