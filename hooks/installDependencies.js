@@ -1,32 +1,14 @@
-module.exports = function (context) {
-    function isCordovaAbove(context, version) {
-        var cordovaVersion = context.opts.cordova.version;
-        console.log(cordovaVersion);
-        var sp = cordovaVersion.split('.');
-        return parseInt(sp[0]) >= version;
-    }
+const childProcess = require('child_process');
 
-    var cordovaAbove8 = isCordovaAbove(context, 8);
-    var child_process;
-    var deferral;
-    
-    if (cordovaAbove8) {
-      child_process = require('child_process');
-      deferral = require('q').defer();
-    } else {
-      child_process = context.requireCordovaModule('child_process');
-      deferral = context.requireCordovaModule('q').defer();
+const installDependencies = (dependencies) =>{
+  dependencies.forEach(name => {
+    try {
+      childProcess.execSync('npm install '+ name);
+      console.log("Package " + name + " installed.")
+    }catch (err){
+      console.log("Failed to install "+ name);
     }
-  
-    var output = child_process.exec('npm install', {cwd: __dirname +"/package.json"}, function (error) {
-      if (error !== null) {
-        console.log('exec error: ' + error);
-        deferral.reject('npm installation failed');
-      }
-      else {
-        deferral.resolve();
-      }
-    });
-  
-    return deferral.promise;
-  };
+  });
+}
+
+installDependencies(['uglify-js@3.17.4', 'clean-css@5.3.2','imagemin@4.0.0', 'imagemin-svgo@10.0.1', 'imagemin-jpegtran@7.0.0', 'imagemin-gifsicle@7.0.0', 'imagemin-optipng@8.0.0', 'html-minifier@4.0.0'])
