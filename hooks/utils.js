@@ -52,7 +52,7 @@ function minifier (dirPath, fileExtension, options) {
         file.endsWith(fileExtension)).forEach(file => {
             if(fileExtension === '.css'){
                 console.log("Minifying CSS File: " + file);
-                fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')));
+                fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
             } else{
                 console.log("Minifying File: " + file);
                 minify(path.join(dirPath, file), options).then(minifiedFile => {
