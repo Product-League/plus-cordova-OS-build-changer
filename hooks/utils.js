@@ -5,7 +5,7 @@ CleanCSS = require('clean-css'),
 imagemin = require('imagemin'),
 imageminPng = require('imagemin-pngquant'),
 imageminJpeg = require('imagemin-jpegtran'),
-imageminSVG = require('imagemin-svgo').default,
+imageminSVG = require('imagemin-svgo'),
 imageminGIF = require('imagemin-gifsicle')
 cssOptions = {
     keepSpecialComments: 0
