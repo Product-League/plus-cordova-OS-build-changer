@@ -67,20 +67,23 @@ function minifier (dirPath, fileExtension, options) {
             replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
             roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
             selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0); defaults to `'standard'`
-            specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
+            specialComments: 0, // denotes a number of /*! ... */ comments preserved; defaults to `all`
             tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
             tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
             tidySelectors: true, // controls selectors optimizing; defaults to `true`,
             variableValueOptimizers: [] // controls value optimizers which are applied to variables
-          },
-          2: {
-            overrideProperties: false
           }
         }
       })
     fs.readdirSync(dirPath).filter(file => 
         file.endsWith(fileExtension)).forEach(file => {
             if(fileExtension === '.css'){
+                if(file.startsWith('PLUS_OutSystemsUI_2_8_0')){
+                    let content = fs.readFileSync(path.join(dirPath, file), 'utf-8');
+                    content = content.replace(':root', '/* clean-css ignore:start */:root');
+                    content = content.replace('  --os-safe-area-left:env(safe-area-inset-left);}', '  --os-safe-area-left:env(safe-area-inset-left);}/* clean-css ignore:end */');
+                    fs.writeFileSync(path.join(dirPath, file), content);
+                }
                 console.log("Minifying CSS File: " + file);
                 fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
             } else{
