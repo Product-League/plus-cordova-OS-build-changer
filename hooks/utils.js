@@ -78,14 +78,10 @@ function minifier (dirPath, fileExtension, options) {
     fs.readdirSync(dirPath).filter(file => 
         file.endsWith(fileExtension)).forEach(file => {
             if(fileExtension === '.css'){
-                if(file.startsWith('PLUS_OutSystemsUI_2_8_0')){
-                    let content = fs.readFileSync(path.join(dirPath, file), 'utf-8');
-                    content = content.replace(':root', '/* clean-css ignore:start */:root');
-                    content = content.replace('  --os-safe-area-left:env(safe-area-inset-left);}', '  --os-safe-area-left:env(safe-area-inset-left);}/* clean-css ignore:end */');
-                    fs.writeFileSync(path.join(dirPath, file), content);
+                if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')){
+                    console.log("Minifying CSS File: " + file);
+                    fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
                 }
-                console.log("Minifying CSS File: " + file);
-                fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
             } else{
                 console.log("Minifying File: " + file);
                 minify(path.join(dirPath, file), options).then(minifiedFile => {
