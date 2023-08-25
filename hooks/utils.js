@@ -2,7 +2,7 @@ const fs = require('fs'),
 path = require('path'),
 minify = require('minify'),
 CleanCSS = require('clean-css'),
-imagemin = require('imagemin').default,
+imagemin = require('imagemin'),
 imageminPng = require('imagemin-pngquant'),
 imageminJpeg = require('imagemin-jpegtran'),
 imageminSVG = require('imagemin-svgo').default,
@@ -76,9 +76,10 @@ function minifier (dirPath, fileExtension, options) {
             }
         })
 }
-function minifyImages(dirPath) {
-    imagemin([dirpath + "/**/*.(jpg,svg,gif,png"], {
-        destination: dirpath, 
+async function minifyImages(dirPath) {
+    await imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
+        cwd: dirPath,
+        destination: dirPath, 
         plugins: [
             imageminPng(),
             imageminJpeg(),
