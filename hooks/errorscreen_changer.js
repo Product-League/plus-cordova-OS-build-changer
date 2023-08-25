@@ -1,12 +1,12 @@
 const utils = require("./utils");
 const fs = require('fs');
 const path = require('path');
+const et = require('elementtree')
 
 module.exports = function (context) {
     const confs = utils.getConfigs();
 
     const config_xml = fs.readFileSync(path.join(context.opts.projectRoot, 'config.xml')).toString();
-    const et = context.requireCordovaModule('elementtree');
     const packageName = et.parse(config_xml).getRoot().attrib.id;
     console.log("PACKAGE NAME: "+packageName)
 
