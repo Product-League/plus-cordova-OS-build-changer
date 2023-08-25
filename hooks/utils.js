@@ -74,7 +74,7 @@ function minifier (dirPath, fileExtension, options) {
             variableValueOptimizers: [] // controls value optimizers which are applied to variables
           },
           2: {
-            skipProperties: true
+            overrideProperties: false
           }
         }
       })
