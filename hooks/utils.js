@@ -1,12 +1,13 @@
+import imagemin from 'imagemin';
+import imageminPng from 'imagemin-jpegtran';
+import imageminJpeg from 'imagemin-pngquant';
+import imageminSVG from 'imagemin-svgo';
+import imageminGIF from 'imagemin-gifsicle';
+
 const fs = require('fs'),
 path = require('path'),
 minify = require('minify'),
 CleanCSS = require('clean-css'),
-imagemin = require('imagemin'),
-imageminPng = require('imagemin-pngquant'),
-imageminJpeg = require('imagemin-jpegtran'),
-imageminSVG = require('imagemin-svgo').default,
-imageminGIF = require('imagemin-gifsicle')
 cssOptions = {
     keepSpecialComments: 0
 },
