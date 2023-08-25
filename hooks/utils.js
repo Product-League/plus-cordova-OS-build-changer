@@ -1,11 +1,8 @@
-const imageminJpegtran = require('imagemin-jpegtran');
-const { default: imageminSvgo } = require('imagemin-svgo');
-
 const fs = require('fs'),
 path = require('path'),
 minify = require('minify'),
 CleanCSS = require('clean-css'),
-imagemin = require('imagemin'),
+imagemin = require('imagemin').default,
 imageminPng = require('imagemin-pngquant'),
 imageminJpeg = require('imagemin-jpegtran'),
 imageminSVG = require('imagemin-svgo').default,
