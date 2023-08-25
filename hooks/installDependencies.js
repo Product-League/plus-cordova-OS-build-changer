@@ -11,4 +11,4 @@ const installDependencies = (dependencies) =>{
   });
 }
 
-installDependencies(['minify@7.2.0'])
+installDependencies(['minify@7.2.0', 'clean-css']);

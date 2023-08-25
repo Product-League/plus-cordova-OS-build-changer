@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const minify = require('minify')
+const minify = require('minify');
+const CleanCSS = require('clean-css');
 
 //Initial configs
 const configs = {
@@ -45,18 +46,24 @@ function indexJSChanger(path) {
     fs.writeFileSync(path, indexjs, 'utf-8');
 }
 
-function minifier (dirPath, fileExtension, options) {
-    fs.readdirSync(dirPath).filter(file => 
-        file.endsWith(fileExtension)).forEach(file => {
-            if(!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+function minifier(dirPath, fileExtension, options) {
+    const cssMin = new CleanCSS({ level: 1 });
+    fs.readdirSync(dirPath).filter(file =>
+
+        file.endsWith(fileExtension).forEach(file => {
+            if (fileExtension === '.css') {
+                console.log("Minifying File: " + file);
+                fs.writeFileSync(path.join(dirPath, file), cssMin.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')));
+            }
+            else {
                 console.log("Minifying File: " + file);
                 minify(path.join(dirPath, file), options).then(minifiedFile => {
                     fs.writeFileSync(path.join(dirPath, file), minifiedFile);
                 })
             }
-    })
+        })
+    )
 }
-
 
 module.exports = {
     getConfigs,
