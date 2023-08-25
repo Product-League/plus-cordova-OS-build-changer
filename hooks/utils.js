@@ -17,7 +17,9 @@ const configs = {
     textToReplace: 'There was an error processing your request.',
     androidPath: "/platforms/android/app/src/main/assets/www/",
     iosPath: "/platforms/ios/www/",
-    errorFile: '_error.html'
+    errorFile: '_error.html',
+    indexFile: 'index.html',
+    urlPath: 'ECOP_Mobile',
 };
 
 function getConfigs() {
@@ -38,20 +40,27 @@ function indexReplacer(path, content) {
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsManifestLoader.js', '<script async type="text/javascript" src="scripts/OutSystemsManifestLoader.js');
     console.log('OutSystemsManifestLoader async')
     //content = content.replace('<script type="text/javascript" src="scripts/OutSystems.js', '<script async type="text/javascript" src="scripts/OutSystems.js');
+    
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactView.js', '<script async type="text/javascript" src="scripts/OutSystemsReactView.js');
     console.log('OutSystemsReactView async')
+    
     content = content.replace('<script type="text/javascript" src="scripts/cordova.js', '<script async type="text/javascript" src="scripts/cordova.js');
     console.log('cordova async')
+    
     content = content.replace('<script type="text/javascript" src="scripts/Debugger.js', '<script async type="text/javascript" src="scripts/Debugger.js');
     console.log('Debugger async')
+    
     content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_PS.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_PS.appDefinition.js');
     console.log('appDefinition async')
+    
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactWidgets.js', '<script async type="text/javascript" src="scripts/OutSystemsReactWidgets.js');
     console.log('OutSystemsReactWidgets async')
+    
     content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_PS.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_PS.index.js')
-    //content = content.replace('<script type="text/javascript" src="scripts/ONEConferenceMobile.appDefinition.js', '<script async type="text/javascript" src="scripts/ONEConferenceMobile.appDefinition.js')
     console.log('index async')
+    
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
+    
     fs.writeFileSync(path, content, "utf-8");
 }
 
