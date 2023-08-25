@@ -76,8 +76,8 @@ function minifier (dirPath, fileExtension, options) {
             }
         })
 }
-async function minifyImages(dirPath) {
-    await imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
+function minifyImages(dirPath) {
+    imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
         cwd: dirPath,
         destination: dirPath, 
         plugins: [
