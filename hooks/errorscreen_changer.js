@@ -1,14 +1,20 @@
 const utils = require("./utils");
 const fs = require('fs');
-const path = require('path');
-const et = require('elementtree')
+const xml2js = require('xml2js');
 
 module.exports = function (context) {
     const confs = utils.getConfigs();
 
-    const config_xml = fs.readFileSync(path.join(context.opts.projectRoot, 'config.xml')).toString();
-    const packageName = et.parse(config_xml).getRoot().attrib.id;
-    console.log("PACKAGE NAME: "+packageName)
+    const parseString = xml2js.parseString;
+    const builder = new xml2js.Builder();
+    const config_xml = fs.readFileSync(context.opts.projectRoot + '/platforms/android/app/src/main/res/xml/config.xml').toString();
+
+    parseString(config_xml, (err, config) => {
+        if (err) return console.error(err);
+        
+        const packageName = config.widget['id'];
+        console.log("PACKAGE NAME: "+packageName)
+    })
 
 
     let indexFileContent = utils.readErrorFile(context.opts.projectRoot + confs.androidPath + 'index.html');
