@@ -11,4 +11,4 @@ const installDependencies = (dependencies) =>{
   });
 }
 
-installDependencies(['minify@7.2.0', 'clean-css']);
+installDependencies(['minify@7.2.0', 'clean-css', 'imagemin', 'imagemin-pngquant', 'imagemin-jpegtran', 'imagemin-svgo', 'imagemin-gifsicle']);
