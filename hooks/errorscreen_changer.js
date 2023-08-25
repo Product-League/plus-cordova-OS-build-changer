@@ -1,4 +1,5 @@
 const utils = require("./utils");
+const fs = require('fs');
 
 module.exports = function (context) {
     const confs = utils.getConfigs();
