@@ -124,19 +124,19 @@ function removeUnusedFolders (foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
         if((folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) && !folder.includes(appId)) {
-            const dirFiles = fs.readdirSync(folder);
+            const dirFiles = fs.readdirSync(foldersPath + folder);
             dirFiles.forEach(file => {
-                //fs.unlinkSync(foldersPath + folder + file);
+                fs.unlinkSync(foldersPath + folder + file);
                 console.log(file);
             })
             
-            /*fs.rmdir(foldersPath + folder, err => {
+            fs.rmdir(foldersPath + folder, err => {
                 if (err) {
                   throw err;
                 }
               
                 console.log(`${foldersPath + folder} is deleted!`);
-              });*/
+              });
         }
     })
 }
