@@ -31,17 +31,17 @@ function getConfigs() {
     return configs;
 }
 
-function readFile(path) {
-    return fs.readFileSync(path, "utf-8");
+function readFile(filePath) {
+    return fs.readFileSync(filePath, "utf-8");
 }
 
-function errorFileReplacer(path, content, textToReplace, replacementText) {
+function errorFileReplacer(errorPath, content, textToReplace, replacementText) {
     content = content.replace(textToReplace, replacementText);
-    fs.writeFileSync(path, content, "utf-8");
+    fs.writeFileSync(errorPath, content, "utf-8");
 }
 
 
-function indexReplacer(path, content) {
+function indexReplacer(indexPath, content) {
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsManifestLoader.js', '<script async type="text/javascript" src="scripts/OutSystemsManifestLoader.js');
     console.log('OutSystemsManifestLoader async')
     //content = content.replace('<script type="text/javascript" src="scripts/OutSystems.js', '<script async type="text/javascript" src="scripts/OutSystems.js');
@@ -66,14 +66,14 @@ function indexReplacer(path, content) {
 
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
 
-    fs.writeFileSync(path, content, "utf-8");
+    fs.writeFileSync(indexPath, content, "utf-8");
 }
 
-function indexJSChanger(path) {
-    let indexjs = fs.readFileSync(path, "utf-8");
+function indexJSChanger(indexJSPath) {
+    let indexjs = readFile(indexJSPath);
     indexjs = indexjs.replace(', NullDebugger', "");
     indexjs = indexjs.replace(', "OutSystems/ClientRuntime/NullDebugger"', "");
-    fs.writeFileSync(path, indexjs, 'utf-8');
+    fs.writeFileSync(indexJSPath, indexjs, 'utf-8');
 }
 
 function minifier(dirPath, fileExtension, options) {
@@ -110,9 +110,9 @@ function minifyImages(dirPath) {
     }).then(() => console.log('Images minified'));
 }
 
-function getAppIdentifier(path) {
+function getAppIdentifier(configPath) {
     const parseString = xml2js.parseString;
-    const config_xml = fs.readFileSync(path).toString();
+    const config_xml = fs.readFileSync(configPath).toString();
     let appId;
 
     parseString(config_xml, (err, config) => {

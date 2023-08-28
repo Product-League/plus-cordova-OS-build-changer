@@ -11,11 +11,10 @@ module.exports = function (context) {
   utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile_PS.index.js");
   utils.minifier(context.opts.projectRoot + confs.iosPath + "scripts", '.js', {js: true});
   utils.minifier(context.opts.projectRoot + confs.iosPath + "css", '.css', {} );
-  //utils.minifier(context.opts.projectRoot + confs.androidPath, '.html',{html: true});
   utils.minifier(context.opts.projectRoot + confs.iosPath, '.js', {js: true});
   utils.minifyImages(context.opts.projectRoot + confs.iosPath + 'img');
 
   let errorFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + confs.errorFile);
-  utils.errorFileReplacer(context.opts.projectRoot + confs.iosPath + confs.errorFile, errorFileContent, 'There was an error processing your request.', '');
+  utils.errorFileReplacer(context.opts.projectRoot + confs.iosPath + confs.errorFile, errorFileContent, confs.textToReplace, '');
 
 }
