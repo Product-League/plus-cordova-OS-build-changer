@@ -118,7 +118,6 @@ function getAppIdentifier(path) {
         if (err) return console.error(err);
 
         console.log("App identifier: " + config['widget']['$'].id);
-        console.log(typeof config['widget']['$'].id)
         return config['widget']['$'].id;
     })
 }
@@ -127,6 +126,7 @@ function removeUnusedFolders(foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
         if (folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) {
+            console.log("Folder: " + folder + " Test: " + appId + configs.notificareSuffix)
             if (folder !== appId + configs.notificareSuffix && folder !== appId + configs.firebaseSuffix) {
                 console.log(folder)
                 const dirFiles = fs.readdirSync(foldersPath + folder);
