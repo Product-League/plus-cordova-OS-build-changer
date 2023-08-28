@@ -123,7 +123,7 @@ function getAppIdentifier(path) {
 function removeUnusedFolders (foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
-        if(!folder.includes(appId + configs.notificareSuffix) || !folder.includes(appId + configs.firebaseSuffix)) {
+        if(!folder.includes(appId + configs.notificareSuffix) || !folder.includes(appId + configs.firebaseSuffix) && folder.includes(configs.firebaseSuffix) && folder.includes(configs.notificareSuffix)) {
             console.log(folder)
             const dirFiles = fs.readdirSync(foldersPath + folder);
             dirFiles.forEach(file => {
