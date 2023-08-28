@@ -127,7 +127,7 @@ function removeUnusedFolders (foldersPath) {
       
       console.log(fs.readdirSync(foldersPath)
         .map(fileName => {
-          return path.join(path, fileName);
+          return path.join(foldersPath, fileName);
         })
         .filter(!isFile));
 }
