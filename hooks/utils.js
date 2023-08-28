@@ -126,7 +126,7 @@ function removeUnusedFolders (foldersPath, appId) {
         if((folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) && !folder.includes(appId)) {
             const dirFiles = fs.readdirSync(foldersPath + folder);
             dirFiles.forEach(file => {
-                fs.unlinkSync(foldersPath + folder + file);
+                fs.unlinkSync(foldersPath + folder + "/" + file);
             })
             
             fs.rmdir(foldersPath + folder, err => {
