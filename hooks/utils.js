@@ -119,7 +119,7 @@ function getAppIdentifier(path) {
 
         console.log("App identifier: " + config['widget']['$'].id);
         console.log(typeof config['widget']['$'].id)
-        return config['widget']['$'].id.toString();
+        return config['widget']['$'].id;
     })
 }
 
