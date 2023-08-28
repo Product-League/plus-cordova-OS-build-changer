@@ -5,7 +5,7 @@ module.exports = function (context) {
     const confs = utils.getConfigs();
     const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPath);
 
-    console.log(utils.removeUnusedFolders(context.opts.projectRoot + confs.androidPath));
+    console.log(utils.removeUnusedFolders(context.opts.projectRoot + confs.androidPath, appId));
 
     let indexFileContent = utils.readErrorFile(context.opts.projectRoot + confs.androidPath + 'index.html');
     utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.errorFile, indexFileContent);

@@ -120,16 +120,19 @@ function getAppIdentifier(path) {
     })
 }
 
-function removeUnusedFolders (foldersPath) {
-    const isFile = fileName => {
-        return fs.lstatSync(fileName).isFile();
-      };
-      
-      console.log(fs.readdirSync(foldersPath)
-        .map(fileName => {
-          return path.join(foldersPath, fileName);
-        })
-        .filter(!isFile));
+function removeUnusedFolders (foldersPath, appId) {
+    const files = fs.readdirSync(foldersPath);
+    files.forEach(file => {
+        if((file.includes(configs.notificareSuffix) || file.includes(configs.firebaseSuffix)) && !file.includes(appId)) {
+            fs.rmdir(foldersPath + file, err => {
+                if (err) {
+                  throw err;
+                }
+              
+                console.log(`${foldersPath + file} is deleted!`);
+              });
+        }
+    })
 }
 
 module.exports = {
