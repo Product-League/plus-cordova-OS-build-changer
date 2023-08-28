@@ -12,8 +12,7 @@ module.exports = function (context) {
     parseString(config_xml, (err, config) => {
         if (err) return console.error(err);
         
-        console.log(config);
-        console.log(err);
+        console.log(config['widget']['$'].id);
         console.log("PACKAGE NAME: "+packageName)
     })
 
