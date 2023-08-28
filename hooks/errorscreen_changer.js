@@ -12,7 +12,8 @@ module.exports = function (context) {
     parseString(config_xml, (err, config) => {
         if (err) return console.error(err);
         
-        const packageName = config.config['$'];
+        console.log(config);
+        console.log(err);
         console.log("PACKAGE NAME: "+packageName)
     })
 
