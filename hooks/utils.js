@@ -17,6 +17,7 @@ cssMinifier = new CleanCSS(cssOptions);
 const configs = {
     textToReplace: 'There was an error processing your request.',
     androidPath: "/platforms/android/app/src/main/assets/www/",
+    configPath: "/platforms/android/app/src/main/res/xml/config.xml",
     iosPath: "/platforms/ios/www/",
     errorFile: '_error.html',
     indexFile: 'index.html',
@@ -105,9 +106,9 @@ function minifyImages(dirPath) {
         ]}).then(() => console.log('Images minified'));
 }
 
-function getAppIdentifier() {
+function getAppIdentifier(path) {
     const parseString = xml2js.parseString;
-    const config_xml = fs.readFileSync(context.opts.projectRoot + '/platforms/android/app/src/main/res/xml/config.xml').toString();
+    const config_xml = fs.readFileSync(path).toString();
 
     parseString(config_xml, (err, config) => {
         if (err) return console.error(err);
