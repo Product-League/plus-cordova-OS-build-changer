@@ -122,14 +122,19 @@ function getAppIdentifier(path) {
 
 function removeUnusedFolders (foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
-    files.forEach(file => {
-        if((file.includes(configs.notificareSuffix) || file.includes(configs.firebaseSuffix)) && !file.includes(appId)) {
-            fs.rmdir(foldersPath + file, err => {
+    files.forEach(folder => {
+        if((folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) && !folder.includes(appId)) {
+            const dirFiles = fs.readdirSync(folder);
+            dirFiles.forEach(file => {
+                fs.unlinkSync(foldersPath + folder + file);
+            })
+            
+            fs.rmdir(foldersPath + folder, err => {
                 if (err) {
                   throw err;
                 }
               
-                console.log(`${foldersPath + file} is deleted!`);
+                console.log(`${foldersPath + folder} is deleted!`);
               });
         }
     })
