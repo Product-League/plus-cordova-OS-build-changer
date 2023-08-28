@@ -120,14 +120,14 @@ function getAppIdentifier(path) {
     })
 }
 
-function removeUnusedFolders (path) {
+function removeUnusedFolders (foldersPath) {
     const isFile = fileName => {
         return fs.lstatSync(fileName).isFile();
       };
       
-      console.log(fs.readdirSync(path)
+      console.log(fs.readdirSync(foldersPath)
         .map(fileName => {
-          return path + fileName;
+          return path.join(path, fileName);
         })
         .filter(!isFile));
 }
