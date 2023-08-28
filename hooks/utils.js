@@ -6,7 +6,8 @@ imagemin = require('imagemin'),
 imageminPng = require('imagemin-pngquant'),
 imageminJpeg = require('imagemin-jpegtran'),
 imageminSVG = require('imagemin-svgo'),
-imageminGIF = require('imagemin-gifsicle')
+imageminGIF = require('imagemin-gifsicle'),
+xml2js = require('xml2js'),
 cssOptions = {
     keepSpecialComments: 0
 },
@@ -104,6 +105,22 @@ function minifyImages(dirPath) {
         ]}).then(() => console.log('Images minified'));
 }
 
+function getAppIdentifier() {
+    const parseString = xml2js.parseString;
+    const config_xml = fs.readFileSync(context.opts.projectRoot + '/platforms/android/app/src/main/res/xml/config.xml').toString();
+
+    parseString(config_xml, (err, config) => {
+        if (err) return console.error(err);
+        
+        console.log("App identifier: " +config['widget']['$'].id);
+        return config['widget']['$'].id;
+    })
+}
+
+function removeUnusedFolders (path) {
+    console.log(fs.readdirSync(path));
+}
+
 module.exports = {
     getConfigs,
     readErrorFile,
@@ -111,5 +128,7 @@ module.exports = {
     indexReplacer,
     indexJSChanger,
     minifier,
-    minifyImages
+    minifyImages,
+    getAppIdentifier,
+    removeUnusedFolders
 }

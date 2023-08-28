@@ -1,21 +1,11 @@
 const utils = require("./utils");
 const fs = require('fs');
-const xml2js = require('xml2js');
 
 module.exports = function (context) {
     const confs = utils.getConfigs();
+    const appId = utils.getAppIdentifier();
 
-    const parseString = xml2js.parseString;
-    const builder = new xml2js.Builder();
-    const config_xml = fs.readFileSync(context.opts.projectRoot + '/platforms/android/app/src/main/res/xml/config.xml').toString();
-
-    parseString(config_xml, (err, config) => {
-        if (err) return console.error(err);
-        
-        console.log(config['widget']['$'].id);
-        console.log("PACKAGE NAME: "+packageName)
-    })
-
+    console.log(utils.removeUnusedFolders(context.opts.projectRoot + confs.androidPath));
 
     let indexFileContent = utils.readErrorFile(context.opts.projectRoot + confs.androidPath + 'index.html');
     utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.errorFile, indexFileContent);
