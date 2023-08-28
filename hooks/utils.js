@@ -126,7 +126,7 @@ function removeUnusedFolders(foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
         if (folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) {
-            if (folder !== appId + configs.notificareSuffix || folder !== appId + configs.firebaseSuffix) {
+            if (folder !== 'com.plusosdev.ecopmobile' + configs.notificareSuffix || folder !== 'com.plusosdev.ecopmobile' + configs.firebaseSuffix) {
                 console.log(folder)
                 const dirFiles = fs.readdirSync(foldersPath + folder);
                 dirFiles.forEach(file => {
