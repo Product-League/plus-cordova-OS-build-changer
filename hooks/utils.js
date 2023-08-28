@@ -113,21 +113,22 @@ function minifyImages(dirPath) {
 function getAppIdentifier(path) {
     const parseString = xml2js.parseString;
     const config_xml = fs.readFileSync(path).toString();
+    let appId;
 
     parseString(config_xml, (err, config) => {
         if (err) return console.error(err);
 
         console.log("App identifier: " + config['widget']['$'].id);
-        return config['widget']['$'].id;
+        appId = config['widget']['$'].id;
     })
+    return appId;
 }
 
 function removeUnusedFolders(foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
         if (folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) {
-            console.log("Folder: " + folder + " Test: " + appId + configs.notificareSuffix)
-            if (folder !== appId + configs.notificareSuffix && folder !== appId + configs.firebaseSuffix) {
+            if (!folder.includes(appId)) {
                 console.log(folder)
                 const dirFiles = fs.readdirSync(foldersPath + folder);
                 dirFiles.forEach(file => {
