@@ -123,7 +123,7 @@ function getAppIdentifier(path) {
 function removeUnusedFolders (foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
-        if((folder.includes(configs.notificareSuffix) && !folder.includes(appId) || folder.includes(configs.firebaseSuffix) && !folder.includes(appId)) && !folder.includes('.json') && !folder.includes('.html') && !folder.includes('.manifest') && !folder.includes('.js') && !folder.includes('css') && !folder.includes('fonts') && !folder.includes('icons') && !folder.includes('img') && !folder.includes('pinning')) {
+        if((folder.includes(configs.notificareSuffix) && !folder.includes(appId) || folder.includes(configs.firebaseSuffix) && !folder.includes(appId)) && !folder.includes('.json') && !folder.includes('.html') && !folder.includes('.manifest') && !folder.includes('.js') && !folder.includes('css') && !folder.includes('fonts') && !folder.includes('icons') && !folder.includes('img') && !folder.includes('pinning') && !folder.includes('plugins')) {
             console.log(folder)
             const dirFiles = fs.readdirSync(foldersPath + folder);
             dirFiles.forEach(file => {
