@@ -22,6 +22,8 @@ const configs = {
     errorFile: '_error.html',
     indexFile: 'index.html',
     urlPath: 'ECOP_Mobile',
+    notificareSuffix: '.notificare',
+    firebaseSuffix: '.firebase'
 };
 
 function getConfigs() {
@@ -119,7 +121,15 @@ function getAppIdentifier(path) {
 }
 
 function removeUnusedFolders (path) {
-    console.log(fs.readdirSync(path));
+    const isFile = fileName => {
+        return fs.lstatSync(fileName).isFile();
+      };
+      
+      console.log(fs.readdirSync(path)
+        .map(fileName => {
+          return path.join(path, fileName);
+        })
+        .filter(!isFile));
 }
 
 module.exports = {
