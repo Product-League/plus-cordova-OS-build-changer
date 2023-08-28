@@ -17,7 +17,8 @@ const fs = require('fs'),
 const configs = {
     textToReplace: 'There was an error processing your request.',
     androidPath: "/platforms/android/app/src/main/assets/www/",
-    configPath: "/platforms/android/app/src/main/res/xml/config.xml",
+    configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
+    configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
     iosPath: "/platforms/ios/www/",
     errorFile: '_error.html',
     indexFile: 'index.html',
@@ -30,7 +31,7 @@ function getConfigs() {
     return configs;
 }
 
-function readErrorFile(path) {
+function readFile(path) {
     return fs.readFileSync(path, "utf-8");
 }
 
@@ -125,7 +126,7 @@ function removeUnusedFolders(foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     files.forEach(folder => {
         if (folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) {
-            if (folder.indexOf(appId) === -1) {
+            if (folder !== appId + configs.notificareSuffix || folder !== appId + configs.firebaseSuffix) {
                 console.log(folder)
                 const dirFiles = fs.readdirSync(foldersPath + folder);
                 dirFiles.forEach(file => {
@@ -148,7 +149,7 @@ function removeUnusedFolders(foldersPath, appId) {
 
 module.exports = {
     getConfigs,
-    readErrorFile,
+    readFile,
     errorFileReplacer,
     indexReplacer,
     indexJSChanger,

@@ -1,13 +1,11 @@
 const utils = require("./utils");
-const fs = require('fs');
 
 module.exports = function (context) {
     const confs = utils.getConfigs();
-    const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPath);
+    const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathAndroid);
 
-    console.log(utils.removeUnusedFolders(context.opts.projectRoot + confs.androidPath, appId));
-
-    let indexFileContent = utils.readErrorFile(context.opts.projectRoot + confs.androidPath + 'index.html');
+    utils.removeUnusedFolders(context.opts.projectRoot + confs.androidPath, appId);
+    let indexFileContent = utils.readFile(context.opts.projectRoot + confs.androidPath + 'index.html');
     utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.errorFile, indexFileContent);
     utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/ECOP_Mobile_PS.index.js");
     utils.minifier(context.opts.projectRoot + confs.androidPath + "scripts", '.js', {js: true});
