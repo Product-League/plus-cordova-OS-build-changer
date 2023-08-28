@@ -127,6 +127,7 @@ function removeUnusedFolders (foldersPath, appId) {
             const dirFiles = fs.readdirSync(foldersPath + folder);
             dirFiles.forEach(file => {
                 fs.unlinkSync(foldersPath + folder + "/" + file);
+                console.log(`${file} is deleted!`)
             })
             
             fs.rmdir(foldersPath + folder, err => {
