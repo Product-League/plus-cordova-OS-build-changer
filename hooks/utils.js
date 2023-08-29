@@ -130,7 +130,7 @@ function removeManifestResources(manifestPath, resources) {
     manifest = JSON.parse(manifest);
 
     resources.forEach(resource => {
-            const key = '/ECOP_Mobile_PS/' + resource + resource.endsWith(notificareSuffix) ? '/notificare-services.zip' : '/google-services.zip';
+            const key = '/ECOP_Mobile_PS/' + resource + resource.endsWith(configs.notificareSuffix) ? '/notificare-services.zip' : '/google-services.zip';
             delete manifest.manifest.urlVersions[key];
     })
     fs.writeFileSync(manifestPath, JSON.stringify(manifest));
