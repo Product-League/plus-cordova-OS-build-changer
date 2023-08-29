@@ -8,7 +8,7 @@ module.exports = function (context) {
   utils.removeUnusedFolders(context.opts.projectRoot + confs.iosPath, appId);
   let indexFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + 'index.html');
   utils.indexReplacer(context.opts.projectRoot + confs.iosPath + confs.errorFile, indexFileContent);
-  utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile_PS.index.js");
+  utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile.index.js");
   utils.minifier(context.opts.projectRoot + confs.iosPath + "scripts", '.js', {js: true});
   utils.minifier(context.opts.projectRoot + confs.iosPath + "css", '.css', {} );
   utils.minifier(context.opts.projectRoot + confs.iosPath, '.js', {js: true});
