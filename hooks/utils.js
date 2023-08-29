@@ -136,7 +136,7 @@ function removeManifestResources(manifestPath, resources) {
     fs.writeFileSync(manifestPath, JSON.stringify(manifest));
 }
 
-function removeUnusedFolders(foldersPath, appId) {
+function removeUnusedFolders(root, foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
     let resources = [];
     files.forEach(folder => {
@@ -161,7 +161,7 @@ function removeUnusedFolders(foldersPath, appId) {
 
         }
     })
-    removeManifestResources(configs.androidPath, resources);
+    removeManifestResources(root + configs.androidPath, resources);
 }
 
 module.exports = {
