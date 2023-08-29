@@ -19,6 +19,7 @@ const configs = {
     androidPath: "/platforms/android/app/src/main/assets/www/",
     configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
     configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
+    manifestPath: "",
     iosPath: "/platforms/ios/www/",
     errorFile: '_error.html',
     indexFile: 'index.html',
@@ -126,12 +127,25 @@ function getAppIdentifier(configPath) {
     return appId;
 }
 
+function removeManifestResources(manifestPath, resources) {
+    let manifest = readFile(manifestPath);
+    manifest = JSON.parse(manifest);
+
+    resources.forEach(resource => {
+            const key = '/ECOP_Mobile_PS/' + resource + resource.endsWith(notificareSuffix) ? '/notificare-services.zip' : '/google-services.zip';
+            delete manifest.manifest.urlVersions[key];
+    })
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+}
+
 function removeUnusedFolders(foldersPath, appId) {
     const files = fs.readdirSync(foldersPath);
+    let resources = [];
     files.forEach(folder => {
         if (folder.includes(configs.notificareSuffix) || folder.includes(configs.firebaseSuffix)) {
             if (!folder.includes(appId)) {
                 console.log(folder)
+                resources.push(folder);
                 const dirFiles = fs.readdirSync(foldersPath + folder);
                 dirFiles.forEach(file => {
                     fs.unlinkSync(foldersPath + folder + "/" + file);
@@ -149,6 +163,7 @@ function removeUnusedFolders(foldersPath, appId) {
 
         }
     })
+    removeManifestResources(configs.androidPath, resources);
 }
 
 module.exports = {
