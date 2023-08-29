@@ -65,7 +65,7 @@ function indexReplacer(indexPath, content) {
     console.log('index async')
 
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
-
+    console.log("Index: " + content)
     fs.writeFileSync(indexPath, content, "utf-8");
 }
 
@@ -87,7 +87,7 @@ function minifier(dirPath, fileExtension, options) {
                     }
                     break;
                 case fileExtension === '.js':
-                    if(!file.endsWith('index.js')){
+                    if(!file.endsWith('index.js') || !file.startsWith('PLUS_OutSystemsUI_2_8_0.OutSystems')){
                     console.log("Minifying File: " + file);
                     minify(path.join(dirPath, file), options).then(minifiedFile => {
                         fs.writeFileSync(path.join(dirPath, file), minifiedFile);
