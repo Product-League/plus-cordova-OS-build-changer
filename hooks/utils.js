@@ -87,10 +87,12 @@ function minifier(dirPath, fileExtension, options) {
                     }
                     break;
                 case fileExtension === '.js':
+                    if(!file.endsWith('index.js')){
                     console.log("Minifying File: " + file);
                     minify(path.join(dirPath, file), options).then(minifiedFile => {
                         fs.writeFileSync(path.join(dirPath, file), minifiedFile);
                     })
+                }
                     break;
                 default:
                     break;
