@@ -161,7 +161,7 @@ function removeUnusedFolders(root, foldersPath, appId) {
 
         }
     })
-    removeManifestResources(root + configs.androidPath, resources);
+    removeManifestResources(root + configs.androidPath + 'manifest.json', resources);
 }
 
 module.exports = {
