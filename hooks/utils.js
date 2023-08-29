@@ -86,7 +86,7 @@ function minifier(dirPath, fileExtension, options) {
                         fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
                     }
                     break;
-                case fileExtension === '.js' || fileExtension === '.html':
+                case fileExtension === '.js':
                     console.log("Minifying File: " + file);
                     minify(path.join(dirPath, file), options).then(minifiedFile => {
                         fs.writeFileSync(path.join(dirPath, file), minifiedFile);
