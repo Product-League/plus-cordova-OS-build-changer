@@ -5,7 +5,7 @@ module.exports = function (context) {
   const confs = utils.getConfigs();
   const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathIos);
 
-  utils.removeUnusedFolders(context.opts.projectRoot + confs.iosPath, appId);
+  utils.removeUnusedFolders(context.opts.projectRoot, context.opts.projectRoot + confs.iosPath, appId);
   let indexFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + 'index.html');
   utils.indexReplacer(context.opts.projectRoot + confs.iosPath + confs.errorFile, indexFileContent);
   utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile.index.js");
