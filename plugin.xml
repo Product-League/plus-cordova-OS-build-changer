@@ -11,7 +11,7 @@
     </platform>
 
     <platform name="ios">
-        <hook type="after_prepare" src="hooks/errorscreen_changer.js" />
+        <hook type="after_prepare" src="hooks/errorscreen_changer_iOS.js" />
     </platform>
 
 </plugin>
