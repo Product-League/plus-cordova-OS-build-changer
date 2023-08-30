@@ -5,9 +5,6 @@ module.exports = function (context) {
   const confs = utils.getConfigs();
   const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathIos);
 
-  //MIN SDK Changer
-  utils.minSDKChanger(context.opts.projectRoot, false);
-
   //Removal of unused resources
   utils.removeUnusedFolders(context.opts.projectRoot, context.opts.projectRoot + confs.iosPath, appId, false);
 
