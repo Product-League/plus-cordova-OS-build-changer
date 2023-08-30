@@ -5,12 +5,26 @@
 
     <name>cordova-os-build-changer</name>
 
+    <engines>
+        <!-- Requires > 3.3.* because of the custom Framework tag for iOS [CB-5238] -->
+        <!-- Requires > 3.5.0 because of the custom Framework tag for Android [CB-6698] -->
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+
     <hook type="before_plugin_install" src="hooks/installDependencies.js" />
      <platform name="android">
         <hook type="after_prepare" src="hooks/errorscreen_changer.js" />
     </platform>
 
     <platform name="ios">
+    	<config-file target="*-Info.plist" parent="UIUserInterfaceStyle">
+            <string>Light</string>
+        </config-file>
+
+	    <config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
+            <true />
+    	</config-file>
+        
         <hook type="after_prepare" src="hooks/errorscreen_changer_iOS.js" />
     </platform>
 
