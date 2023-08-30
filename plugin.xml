@@ -14,7 +14,7 @@
     <hook type="before_plugin_install" src="hooks/installDependencies.js" />
 
     <platform name="android">
-        <hook type="after_prepare" src="hooks/errorscreen_changer.js" />
+        <hook type="after_prepare" src="hooks/build_changer.js" />
     </platform>
 
     <platform name="ios">
@@ -28,7 +28,7 @@
     	</config-file>
     <!-- END plist file changer-->
 
-        <hook type="after_prepare" src="hooks/errorscreen_changer_iOS.js" />
+        <hook type="after_prepare" src="hooks/build_changer_iOS.js" />
     </platform>
 
 </plugin>
