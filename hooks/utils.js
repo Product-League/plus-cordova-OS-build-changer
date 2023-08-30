@@ -11,8 +11,7 @@ const fs = require('fs'),
     cssOptions = {
         keepSpecialComments: 0
     },
-    cssMinifier = new CleanCSS(cssOptions),
-    pluginId = 'cordova-os-build-changer';
+    cssMinifier = new CleanCSS(cssOptions);
 
 //Initial configs
 const configs = {

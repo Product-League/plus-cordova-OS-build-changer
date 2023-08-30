@@ -5,7 +5,7 @@ utils = require('./utils'),
 Q = require("Q"),
 child_process = require('child_process'),
 ConfigParser = require('cordova-common').ConfigParser,
-pluginId = "com-outsystems-minsdkversionchanger";
+pluginId = "cordova-os-build-changer";
 
 module.exports = function(context) {
 
