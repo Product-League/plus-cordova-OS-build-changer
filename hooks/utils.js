@@ -171,6 +171,17 @@ function removeUnusedFolders(root, foldersPath, appId, isAndroid) {
     removeManifestResources(root + (isAndroid ? configs.androidPath : configs.iosPath) + 'manifest.json', resources);
 }
 
+function replaceFileRegex(filePath, regex, replacer, callback){
+        
+    if(!fs.existsSync(filePath)){
+        console.log(filePath+ " not found!")
+        return;
+    }
+    let content = fs.readFileSync(filePath,"utf-8")
+    content = content.replace(regex,replacer);
+    fs.writeFile(filePath,content,callback);
+}
+
 function minSDKChanger(projectRoot, isAndroid) {
     console.log("Changing Android Min SDK!");
     const configPath = isAndroid ? path.join("plugins/android.json") : path.join("plugins/ios.json");
