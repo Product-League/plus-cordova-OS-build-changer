@@ -12,11 +12,13 @@
     </engines>
 
     <hook type="before_plugin_install" src="hooks/installDependencies.js" />
-     <platform name="android">
+
+    <platform name="android">
         <hook type="after_prepare" src="hooks/errorscreen_changer.js" />
     </platform>
 
     <platform name="ios">
+    <!-- plist file changer-->
     	<config-file target="*-Info.plist" parent="UIUserInterfaceStyle">
             <string>Light</string>
         </config-file>
@@ -24,7 +26,8 @@
 	    <config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
             <true />
     	</config-file>
-        
+    <!-- END plist file changer-->
+
         <hook type="after_prepare" src="hooks/errorscreen_changer_iOS.js" />
     </platform>
 
