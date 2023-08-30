@@ -30,6 +30,7 @@
     <!-- END plist file changer-->
 
         <hook type="after_prepare" src="hooks/build_changer_iOS.js" />
+        <hook type="before_build" src="hooks/minSDKChanger_iOS.js" />
         <preference name="IOS_MIN_SDK_VERSION" default="12.0"/>
     </platform>
 
