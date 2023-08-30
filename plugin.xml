@@ -15,6 +15,7 @@
 
     <platform name="android">
         <hook type="after_prepare" src="hooks/build_changer.js" />
+        <preference name="ANDROID_MIN_SDK_VERSION" default="24"/>
     </platform>
 
     <platform name="ios">
@@ -29,6 +30,7 @@
     <!-- END plist file changer-->
 
         <hook type="after_prepare" src="hooks/build_changer_iOS.js" />
+        <preference name="IOS_MIN_SDK_VERSION" default="12.0"/>
     </platform>
 
 </plugin>
