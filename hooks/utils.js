@@ -9,7 +9,7 @@ const fs = require('fs'),
     imageminGIF = require('imagemin-gifsicle'),
     xml2js = require('xml2js'),
     xcode = require('xcode'),
-    Q = require('Q'),
+    Q = require('q'),
     child_process = require('child_process'),
     ConfigParser = require('cordova-common').ConfigParser,
     cssOptions = {
@@ -331,14 +331,14 @@ function minSDKChanger(projectRoot, isAndroid) {
                 return g1 + "name=\"deployment-target\" value=\"" + iosVersion + "\"" + g3
             }
 
-            utils.replaceFileRegex(pathMainConfigXML, /([\s|\S]*)(name=\"deployment-target\" value=\"[0-9]+\.[0-9]+\")([\S|\s]*)/, replaceConfigXML, function (err) {
+            replaceFileRegex(pathMainConfigXML, /([\s|\S]*)(name=\"deployment-target\" value=\"[0-9]+\.[0-9]+\")([\S|\s]*)/, replaceConfigXML, function (err) {
                 if (err) {
                     deferral1.reject();
                     throw new Error('Unable to write to configXml: ' + err);
                 }
                 deferral1.resolve();
             })
-            utils.replaceFileRegex(pathAppConfigXML, /([\s|\S]*)(name=\"deployment-target\" value=\"[0-9]+\.[0-9]+\")([\S|\s]*)/, replaceConfigXML, function (err) {
+            replaceFileRegex(pathAppConfigXML, /([\s|\S]*)(name=\"deployment-target\" value=\"[0-9]+\.[0-9]+\")([\S|\s]*)/, replaceConfigXML, function (err) {
                 if (err) {
                     deferral2.reject();
                     throw new Error('Unable to write to configXml: ' + err);
