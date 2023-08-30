@@ -10,6 +10,7 @@ const fs = require('fs'),
     xml2js = require('xml2js'),
     xcode = require('xcode'),
     Q = require('Q'),
+    child_process = require('child_process'),
     ConfigParser = require('cordova-common').ConfigParser,
     cssOptions = {
         keepSpecialComments: 0
@@ -175,7 +176,7 @@ function minSDKChanger(projectRoot, isAndroid) {
     const configPath = isAndroid ? path.join("plugins/android.json") : path.join("plugins/ios.json");
     const configsString = fs.readFileSync(configPath, "utf-8");
     let minSDKconfigs = JSON.parse(configsString).installed_plugins[pluginId];
-    
+
     if (isAndroid) {
         const androidVersion = parseInt(minSDKconfigs["ANDROID_MIN_SDK_VERSION"]);
 
@@ -295,7 +296,6 @@ function minSDKChanger(projectRoot, isAndroid) {
                     }
                 }
 
-                const child_process = require('child_process');
 
                 var iosPath = path.join(
                     projectRoot,
