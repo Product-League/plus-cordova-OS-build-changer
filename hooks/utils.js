@@ -190,7 +190,7 @@ function minSDKChanger(projectRoot, isAndroid) {
 
     if (isAndroid) {
         const androidVersion = parseInt(minSDKconfigs["ANDROID_MIN_SDK_VERSION"]);
-
+        console.log(androidVersion)
         const pathConfig = path.join(
             projectRoot,
             "platforms",
