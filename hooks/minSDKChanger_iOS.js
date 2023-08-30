@@ -1,10 +1,11 @@
-const fs = require("fs");
-const path = require("path");
-const xcode = require("xcode");
-const utils = require('./utils');
-//const Q = require("Q");
-
-const pluginId = "com-outsystems-minsdkversionchanger";
+const fs = require("fs"),
+path = require("path"),
+xcode = require("xcode"),
+utils = require('./utils'),
+Q = require("Q"),
+child_process = require('child_process'),
+ConfigParser = require('cordova-common').ConfigParser,
+pluginId = "com-outsystems-minsdkversionchanger";
 
 module.exports = function(context) {
 

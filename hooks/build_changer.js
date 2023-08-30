@@ -4,8 +4,8 @@ module.exports = function (context) {
     const confs = utils.getConfigs();
     const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathAndroid);
 
-    //MIN SDK Changer
-    utils.minSDKChanger(context.opts.projectRoot, true);
+    //MIN SDK Changer Android
+    utils.minSDKChangerAndroid(context.opts.projectRoot);
 
     //Removal of unused resources
     utils.removeUnusedFolders(context.opts.projectRoot, context.opts.projectRoot + confs.androidPath, appId, true);
