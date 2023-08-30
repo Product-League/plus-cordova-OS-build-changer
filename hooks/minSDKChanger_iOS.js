@@ -12,8 +12,7 @@ module.exports = function(context) {
     const configPath = path.join("plugins/ios.json"); 
     const configsString = fs.readFileSync(configPath,"utf-8");
     const configs = JSON.parse(configsString).installed_plugins[pluginId];
-    console.log("Configs String: " +configsString)
-    console.log("\n Configs Obj: " + configs)
+    console.log("Configs String: " +configsString);
     const iosVersion = parseInt(configs["IOS_MIN_SDK_VERSION"]).toFixed(1);
     const ConfigParser = require('cordova-common').ConfigParser;
     const config = new ConfigParser("config.xml"); 

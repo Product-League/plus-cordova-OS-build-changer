@@ -213,5 +213,6 @@ module.exports = {
     minifyImages,
     getAppIdentifier,
     removeUnusedFolders,
-    minSDKChangerAndroid
+    minSDKChangerAndroid,
+    replaceFileRegex
 }
