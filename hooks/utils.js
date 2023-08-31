@@ -79,26 +79,35 @@ function indexJSChanger(indexJSPath) {
 }
 
 function minifier(dirPath, fileExtension, options) {
-    fs.readdirSync(dirPath).filter(file =>
-        file.endsWith(fileExtension)).forEach(file => {
-            switch (true) {
-                case fileExtension === '.css':
-                    if (!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
-                        console.log("Minifying CSS File: " + file);
-                        fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
-                    }
-                    break;
-                case fileExtension === '.js':
-                    console.log("Minifying File: " + file);
-                    minify(path.join(dirPath, file), options).then(minifiedFile => {
-                        fs.writeFileSync(path.join(dirPath, file), minifiedFile);
-                    })
-                    break;
-                default:
-                    break;
-            }
-        })
+    fs.readdirSync(dirPath).filter(file => {
+        if(file.endsWith(fileExtension)){
+            file.endsWith(fileExtension).forEach(file => {
+                switch (true) {
+                    case fileExtension === '.css':
+                        if (!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+                            console.log("Minifying CSS File: " + file);
+                            fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
+                        }
+                        break;
+                    case fileExtension === '.js':
+                        console.log("Minifying File: " + file);
+                        minify(path.join(dirPath, file), options).then(minifiedFile => {
+                            fs.writeFileSync(path.join(dirPath, file), minifiedFile);
+                        })
+                        break;
+                    default:
+                        break;
+                }
+            })
+        } if(!file.endsWith('.json') || !file.endsWith('.manifest') || !file.endsWith('.png') || !file.endsWith('.gif') || !file.endsWith('.svg') || !file.endsWith('.css') || !file.endsWith('.woff') || !file.endsWith('.woff2')) {
+            minifier(dirPath + '/' + file, '.js', {js: true});
+            minifier(dirPath + '/' + file, '.css', {});
+        }
+    
+    }
+    )
 }
+
 function minifyImages(dirPath) {
     imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
         cwd: dirPath,
