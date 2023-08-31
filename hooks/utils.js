@@ -246,15 +246,10 @@ function performanceLogcatAdd (androidManifestPath){
       )}*/
 
       let manifest = readFile(androidManifestPath);
-      manifest = manifest.replace(`      <meta-data
-      android:name="firebase_performance_collection_enabled"
-      android:value="true" />`, `      <meta-data
-      android:name="firebase_performance_collection_enabled"
-      android:value="true" />
-      
-      <meta-data
+      manifest = manifest.replace(`android:name="firebase_performance_collection_enabled"`, `android:name="firebase_performance_collection_enabled"\nandroid:value="true" />\n\n
+      <meta-data\n
       android:name="firebase_performance_logcat_enabled"
-      android:value="true" />
+      \nandroid:value="true" />
       `);
 
       fs.writeFileSync(androidManifestPath, manifest);
