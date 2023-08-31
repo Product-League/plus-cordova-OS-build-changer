@@ -16,6 +16,12 @@
     <platform name="android">
         <hook type="after_prepare" src="hooks/build_changer.js" />
         <preference name="ANDROID_MIN_SDK_VERSION" default="24"/>
+
+        <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+                <meta-data
+                android:name="firebase_performance_logcat_enabled"
+                android:value="true" />
+        </edit-config>
     </platform>
 
     <platform name="ios">
