@@ -223,7 +223,7 @@ function minSDKChangerAndroid(projectRoot) {
 }
 
 function performanceLogcatAdd (androidManifestPath){
-    /*const parseString = xml2js.parseString;
+    const parseString = xml2js.parseString;
     const builder = new xml2js.Builder();
     const filePath = androidManifestPath;
     const androidManifest = fs.readFileSync(filePath).toString();
@@ -235,26 +235,15 @@ function performanceLogcatAdd (androidManifestPath){
   
         manifestRoot = manifest['manifest'];
   
-
-        manifestRoot['application']['meta-data'] = [];
+        if(!manifestRoot['application'][0]['meta-data']){
+            manifestRoot['application'][0]['meta-data']= [];
+        }
         
   
-        manifestRoot['application']['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled'}});
-        manifestRoot['application']['meta-data'].push({'$': {'android:value': 'true'}})
+        manifestRoot['application'][0]['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled', 'android:value': 'true'}});
           fs.writeFileSync(androidManifestPath, builder.buildObject(manifest));
         }
-      )}*/
-
-      let manifest = readFile(androidManifestPath);
-      manifest = manifest.replace(`android:name="firebase_performance_collection_enabled"`, `android:name="firebase_performance_collection_enabled"\nandroid:value="true" />\n\n
-      <meta-data\n
-      android:name="firebase_performance_logcat_enabled"
-      \nandroid:value="true" />
-      `);
-
-      fs.writeFileSync(androidManifestPath, manifest);
-
-
+      )}
 }
 
 module.exports = {
