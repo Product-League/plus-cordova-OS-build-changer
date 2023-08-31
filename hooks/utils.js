@@ -18,9 +18,10 @@ const fs = require('fs'),
 const configs = {
     textToReplace: 'There was an error processing your request.',
     androidPath: "/platforms/android/app/src/main/assets/www/",
+    androidMainPath: "/platforms/android/app/src/main/",
     configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
     configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
-    manifestPath: "",
+    androidManifest: "AndroidManifest.xml",
     iosPath: "/platforms/ios/www/",
     errorFile: '_error.html',
     indexFile: 'index.html',
@@ -218,6 +219,29 @@ function minSDKChangerAndroid(projectRoot) {
     console.log("Changed Android MinSDKVersion!");
 }
 
+function performanceLogcatAdd (androidManifestPath){
+    const parseString = xml2js.parseString;
+    const builder = new xml2js.Builder();
+    const filePath = androidManifestPath;
+    const androidManifest = fs.readFileSync(filePath).toString();
+    let manifestRoot;
+  
+    if (androidManifest) {
+      parseString(androidManifest, (err, manifest) => {
+        if (err) return console.error(err);
+  
+        manifestRoot = manifest['manifest'];
+  
+        if (!manifestRoot['meta-data']) {
+          manifestRoot['meta-data'] = [];
+        }
+  
+        manifestRoot['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled'}});
+          fs.writeFileSync(androidManifestPath, builder.buildObject(manifest));
+        }
+      )}
+}
+
 module.exports = {
     getConfigs,
     readFile,
@@ -230,5 +254,6 @@ module.exports = {
     removeUnusedFolders,
     minSDKChangerAndroid,
     replaceFileRegex,
-    deepMinifier
+    deepMinifier,
+    performanceLogcatAdd
 }

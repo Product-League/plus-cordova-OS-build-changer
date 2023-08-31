@@ -4,6 +4,9 @@ module.exports = function (context) {
     const confs = utils.getConfigs();
     const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathAndroid);
 
+    //Firebase Performance Logcat Addition
+    utils.performanceLogcatAdd(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
+
     //MIN SDK Changer Android
     utils.minSDKChangerAndroid(context.opts.projectRoot);
 
