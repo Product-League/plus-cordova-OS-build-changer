@@ -8,7 +8,6 @@ const fs = require('fs'),
     imageminSVG = require('imagemin-svgo'),
     imageminGIF = require('imagemin-gifsicle'),
     xml2js = require('xml2js'),
-    deepScan = require('deep-scan'),
     cssOptions = {
         keepSpecialComments: 0
     },
