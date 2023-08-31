@@ -14,9 +14,7 @@ module.exports = function (context) {
   utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile.index.js");
 
   //File minification
-  utils.minifier(context.opts.projectRoot + confs.iosPath + "scripts", '.js', {js: true});
-  utils.minifier(context.opts.projectRoot + confs.iosPath + "css", '.css', {} );
-  utils.minifier(context.opts.projectRoot + confs.iosPath, '.js', {js: true});
+  utils.deepMinifier(context.opts.projectRoot + confs.iosPath);
   utils.minifyImages(context.opts.projectRoot + confs.iosPath + 'img');
 
   //Error File Changer
