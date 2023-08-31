@@ -103,7 +103,7 @@ function minifier(dirPath, fileExtension, options) {
 
 function deepMinifier(dirPath) {
     deepScan(
-        folderPath,
+        dirPath,
         (matchedFile) => {  
             minify(path.join(dirPath, matchedFile), options).then(minifiedFile => {
                 fs.writeFileSync(path.join(dirPath, matchedFile), minifiedFile);
