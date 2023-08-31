@@ -103,15 +103,19 @@ function minifier(dirPath, fileExtension, options) {
 }
 
 function deepMinifier(dirPath) {
-    deepScan(
-        dirPath,
-        (matchedFile) => {  
-            minify(path.join(dirPath, matchedFile), {js: true}).then(minifiedFile => {
-                fs.writeFileSync(path.join(dirPath, matchedFile), minifiedFile);
+    fs.readdirSync(dirPath).forEach(file => {
+        if(fs.statSync(path.join(dirPath, file)).isDirectory()){
+            deepMinifier(path.join(dirPath, file));
+        } else if(file.endsWith('.js')){
+            console.log("Minifying JS File: " + file);
+            minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
+                fs.writeFileSync(path.join(dirPath, file), minifiedFile);
             })
-        },
-        ['\\.js$'],
-        'ONLY'); // Ignore all json files in folderPath
+        } else if(file.endsWith('.css') && !file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+            console.log("Minifying CSS File: " + file);
+            fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
+        }
+    })
 }
 
 function minifyImages(dirPath) {
