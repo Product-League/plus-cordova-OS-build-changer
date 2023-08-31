@@ -8,6 +8,7 @@ const fs = require('fs'),
     imageminSVG = require('imagemin-svgo'),
     imageminGIF = require('imagemin-gifsicle'),
     xml2js = require('xml2js'),
+    deepScan = require('deep-scan'),
     cssOptions = {
         keepSpecialComments: 0
     },
@@ -79,33 +80,37 @@ function indexJSChanger(indexJSPath) {
 }
 
 function minifier(dirPath, fileExtension, options) {
-    fs.readdirSync(dirPath).filter(file => {
-        if(file.endsWith(fileExtension)){
-            file.endsWith(fileExtension).forEach(file => {
-                switch (true) {
-                    case fileExtension === '.css':
-                        if (!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
-                            console.log("Minifying CSS File: " + file);
-                            fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
-                        }
-                        break;
-                    case fileExtension === '.js':
-                        console.log("Minifying File: " + file);
-                        minify(path.join(dirPath, file), options).then(minifiedFile => {
-                            fs.writeFileSync(path.join(dirPath, file), minifiedFile);
-                        })
-                        break;
-                    default:
-                        break;
-                }
+    fs.readdirSync(dirPath).filter(file =>
+        file.endsWith(fileExtension)).forEach(file => {
+            switch (true) {
+                case fileExtension === '.css':
+                    if (!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
+                        console.log("Minifying CSS File: " + file);
+                        fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
+                    }
+                    break;
+                case fileExtension === '.js':
+                    console.log("Minifying File: " + file);
+                    minify(path.join(dirPath, file), options).then(minifiedFile => {
+                        fs.writeFileSync(path.join(dirPath, file), minifiedFile);
+                    })
+                    break;
+                default:
+                    break;
+            }
+        })
+}
+
+function deepMinifier(dirPath) {
+    deepScan(
+        folderPath,
+        (matchedFile) => {  
+            minify(path.join(dirPath, matchedFile), options).then(minifiedFile => {
+                fs.writeFileSync(path.join(dirPath, matchedFile), minifiedFile);
             })
-        } if(!file.endsWith('.json') || !file.endsWith('.manifest') || !file.endsWith('.png') || !file.endsWith('.gif') || !file.endsWith('.svg') || !file.endsWith('.css') || !file.endsWith('.woff') || !file.endsWith('.woff2')) {
-            minifier(dirPath + '/' + file, '.js', {js: true});
-            minifier(dirPath + '/' + file, '.css', {});
-        }
-    
-    }
-    )
+        },
+        ['\\.js$'],
+        'ONLY'); // Ignore all json files in folderPath
 }
 
 function minifyImages(dirPath) {
@@ -224,5 +229,6 @@ module.exports = {
     getAppIdentifier,
     removeUnusedFolders,
     minSDKChangerAndroid,
-    replaceFileRegex
+    replaceFileRegex,
+    deepMinifier
 }
