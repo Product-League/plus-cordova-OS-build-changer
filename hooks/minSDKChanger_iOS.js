@@ -4,14 +4,15 @@ xcode = require("xcode"),
 utils = require('./utils'),
 Q = require("Q"),
 child_process = require('child_process'),
-ConfigParser = require('cordova-common').ConfigParser,
-pluginId = "cordova-os-build-changer";
+ConfigParser = require('cordova-common').ConfigParser;
 
 module.exports = function(context) {
 
+    const utilsConfigs = utils.getConfigs();
+
     const configPath = path.join("plugins/ios.json"); 
     const configsString = fs.readFileSync(configPath,"utf-8");
-    const configs = JSON.parse(configsString).installed_plugins[pluginId];
+    const configs = JSON.parse(configsString).installed_plugins[utilsConfigs.pluginId];
     console.log("Configs String: " +configsString);
     const iosVersion = parseInt(configs["IOS_MIN_SDK_VERSION"]).toFixed(1);
     const ConfigParser = require('cordova-common').ConfigParser;

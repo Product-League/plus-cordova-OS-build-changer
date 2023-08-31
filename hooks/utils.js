@@ -25,7 +25,8 @@ const configs = {
     indexFile: 'index.html',
     urlPath: 'ECOP_Mobile',
     notificareSuffix: '.notificare',
-    firebaseSuffix: '.firebase'
+    firebaseSuffix: '.firebase',
+    pluginId: 'cordova-os-build-changer'
 };
 
 function getConfigs() {
@@ -181,7 +182,7 @@ function minSDKChangerAndroid(projectRoot) {
     console.log("Changing Android Min SDK!");
     const configPath = path.join("plugins/android.json");
     const configsString = fs.readFileSync(configPath, "utf-8");
-    let minSDKconfigs = JSON.parse(configsString).installed_plugins[pluginId];
+    let minSDKconfigs = JSON.parse(configsString).installed_plugins[configs.pluginId];
 
     const androidVersion = parseInt(minSDKconfigs["ANDROID_MIN_SDK_VERSION"]);
     console.log(androidVersion)
