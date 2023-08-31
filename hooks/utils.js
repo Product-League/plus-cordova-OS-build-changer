@@ -232,11 +232,12 @@ function performanceLogcatAdd (androidManifestPath){
   
         manifestRoot = manifest['manifest'];
   
-        if (!manifestRoot['meta-data']) {
-          manifestRoot['meta-data'] = [];
-        }
+
+        manifestRoot['application']['meta-data'] = [];
+        
   
-        manifestRoot['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled'}});
+        manifestRoot['application']['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled'}});
+        manifestRoot['application']['meta-data'].push({'$': {'android:value': 'true'}})
           fs.writeFileSync(androidManifestPath, builder.buildObject(manifest));
         }
       )}
