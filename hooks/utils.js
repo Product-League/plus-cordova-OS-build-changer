@@ -22,6 +22,7 @@ const configs = {
     configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
     androidManifest: "AndroidManifest.xml",
     iosPath: "/platforms/ios/www/",
+    iosMainPath: "platforms/ios/",
     errorFile: '_error.html',
     indexFile: 'index.html',
     urlPath: 'ECOP_Mobile',
