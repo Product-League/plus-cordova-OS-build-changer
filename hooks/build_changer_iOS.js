@@ -20,5 +20,6 @@ module.exports = function (context) {
   //Error File Changer
   let errorFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + confs.errorFile);
   utils.errorFileReplacer(context.opts.projectRoot + confs.iosPath + confs.errorFile, errorFileContent, confs.textToReplace, '');
+  utils.moveGSFiles(context.opts.projectRoot + confs.iosPath + appId + '/GoogleService-Info.plist', context.opts.projectRoot + confs.iosPath  + '/GoogleService-Info.plist');
 
 }

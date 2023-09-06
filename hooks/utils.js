@@ -185,6 +185,10 @@ function removeUnusedFolders(root, foldersPath, appId, isAndroid) {
     removeManifestResources(root + (isAndroid ? configs.androidPath : configs.iosPath) + 'manifest.json', resources);
 }
 
+function moveGSFiles(oldPath, newPath){
+    fs.renameSync(oldPath, newPath);
+}
+
 function replaceFileRegex(filePath, regex, replacer, callback) {
 
     if (!fs.existsSync(filePath)) {
@@ -259,5 +263,6 @@ module.exports = {
     minSDKChangerAndroid,
     replaceFileRegex,
     deepMinifier,
-    performanceLogcatAdd
+    performanceLogcatAdd,
+    moveGSFiles
 }
