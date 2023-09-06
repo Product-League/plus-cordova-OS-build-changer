@@ -4,6 +4,7 @@ var path = require("path");
 var AdmZip = require("adm-zip");
 
 var utils = require("./utilities");
+var uts = require('./utils');
 
 var constants = {
   googleServices: "google-services"
@@ -18,6 +19,7 @@ module.exports = function(context) {
   } else {
     defer = context.requireCordovaModule("q").defer();
   }
+  const confs = uts.getConfigs();
   
   var platform = context.opts.plugin.platform;
   var platformConfig = utils.getPlatformConfigs(platform);
@@ -54,7 +56,7 @@ module.exports = function(context) {
 
   var sourceFilePath = path.join(targetPath, fileName);
   console.log(sourceFilePath)
-  var destFilePath = path.join(context.opts.plugin.dir, fileName);
+  var destFilePath = path.join(context.opts.projectRoot + confs.iosPath, fileName);
   console.log(destFilePath)
 
   if(!utils.checkIfFolderExists(destFilePath)){
