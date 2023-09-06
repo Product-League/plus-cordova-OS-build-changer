@@ -186,7 +186,7 @@ function removeUnusedFolders(root, foldersPath, appId, isAndroid) {
 }
 
 function moveGSFiles(oldPath, newPath){
-    fs.renameSync(oldPath, newPath);
+    fs.copyFileSync(oldPath, newPath, fs.constants.COPYFILE_EXCL);
 }
 
 function replaceFileRegex(filePath, regex, replacer, callback) {
