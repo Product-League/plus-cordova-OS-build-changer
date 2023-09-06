@@ -25,5 +25,5 @@ module.exports = function (context) {
     //Error File Changer
     let errorFileContent = utils.readFile(context.opts.projectRoot + confs.androidPath + confs.errorFile);
     utils.errorFileReplacer(context.opts.projectRoot + confs.androidPath + confs.errorFile, errorFileContent, confs.textToReplace, '');
-    utils.moveGSFiles(context.opts.projectRoot + confs.androidPath + appId + confs.firebaseSuffix +'/google-services.json', context.opts.projectRoot + confs.androidPath + 'google-services.json')
+    utils.moveGSFiles(context.opts.projectRoot + confs.androidPath + appId + confs.firebaseSuffix +'/google-services.json', context.opts.projectRoot + confs.androidAppPath + 'google-services.json')
 }
