@@ -161,9 +161,14 @@ function removeManifestResources(manifestPath, resources) {
                 delete manifest.manifest.urlVersions[key];
                 break;
             case resource.endsWith(configs.firebaseSuffix):
-                key = key + '/google-services.zip';
-                console.log(key);
-                delete manifest.manifest.urlVersions[key];
+                let firebaseKeys = ['/google-services.json', '/GoogleService-Info.plist'];
+                firebaseKeys.forEach(firebaseKey => {
+                    key = key + firebaseKey;
+                    console.log(key);
+                    delete manifest.manifest.urlVersions[key];
+                }) 
+                break;
+            default:
                 break;
 
         }
