@@ -149,10 +149,24 @@ function getAppIdentifier(configPath) {
 function removeManifestResources(manifestPath, resources) {
     let manifest = readFile(manifestPath);
     manifest = JSON.parse(manifest);
+    console.log(manifest)
 
     resources.forEach(resource => {
         let key = '/ECOP_Mobile/' + resource;
-        key = key + (resource.endsWith(configs.notificareSuffix) ? '/notificare-services.zip' : '/google-services.zip');
+
+        switch(true) {
+            case resource.endsWith(configs.notificareSuffix):
+                key = key + '/notificare-services.zip';
+                console.log(key);
+                delete manifest.manifest.urlVersions[key];
+                break;
+            case resource.endsWith(configs.firebaseSuffix):
+                key = key + '/google-services.zip';
+                console.log(key);
+                delete manifest.manifest.urlVersions[key];
+                break;
+
+        }
         console.log(key);
         delete manifest.manifest.urlVersions[key];
     })
