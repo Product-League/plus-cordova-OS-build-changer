@@ -1,5 +1,5 @@
 # cordova-OS-build-changer
-Cordova Plugin to change OutSystems default files
+Cordova Plugin to change OutSystems mobile build default files
 
 
 Created by:
