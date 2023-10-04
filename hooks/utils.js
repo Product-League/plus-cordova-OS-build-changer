@@ -152,7 +152,7 @@ function removeManifestResources(manifestPath, resources) {
     console.log(manifest)
 
     resources.forEach(resource => {
-        let key = '/ECOP_Mobile/' + resource;
+        let key = '/CloneOfECOP_Mobile/' + resource;
 
         switch(true) {
             case resource.endsWith(configs.notificareSuffix):
