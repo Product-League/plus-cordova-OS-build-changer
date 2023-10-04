@@ -20,13 +20,13 @@ const configs = {
     androidMainPath: "/platforms/android/app/src/main/",
     androidAppPath: "/platforms/android/app/",
     configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
-    configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
+    configPathIos: "/platforms/ios/CloneOfECOP Mobile/config.xml",
     androidManifest: "AndroidManifest.xml",
     iosPath: "/platforms/ios/www/",
     iosMainPath: "/platforms/ios/",
     errorFile: '_error.html',
     indexFile: 'index.html',
-    urlPath: 'ECOP_Mobile',
+    urlPath: 'CloneOfECOP_Mobile',
     notificareSuffix: '.notificare',
     firebaseSuffix: '.firebase',
     pluginId: 'cordova-os-build-changer'
@@ -60,13 +60,13 @@ function indexReplacer(indexPath, content) {
     content = content.replace('<script type="text/javascript" src="scripts/Debugger.js', '<script async type="text/javascript" src="scripts/Debugger.js');
     console.log('Debugger async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile.appDefinition.js');
+    content = content.replace('<script type="text/javascript" src="scripts/CloneOfECOP_Mobile.appDefinition.js', '<script async type="text/javascript" src="scripts/CloneOfECOP_Mobile.appDefinition.js');
     console.log('appDefinition async')
 
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactWidgets.js', '<script async type="text/javascript" src="scripts/OutSystemsReactWidgets.js');
     console.log('OutSystemsReactWidgets async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile.index.js')
+    content = content.replace('<script type="text/javascript" src="scripts/CloneOfECOP_Mobile.index.js', '<script async type="text/javascript" src="scripts/CloneOfECOP_Mobile.index.js')
     console.log('index async')
 
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
