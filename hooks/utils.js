@@ -72,7 +72,6 @@ function indexReplacer(indexPath, content) {
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
     console.log("Index: " + content);
 
-    content = content.replace('<script type="text/javascript">', '<script type="text/javascript" src="/ECOP_Mobile/scripts/ECOP_Mobile.quicklink.js"></script><script type="text/javascript">setTimeout(()=>{quicklink.prerender(["/ECOP_Mobile/Promotions", "/ECOP_Mobile/Cart", "/ECOP_Mobile/ProductListPage"], true);}, 50)</script><script type="text/javascript">')
     fs.writeFileSync(indexPath, content, "utf-8");
 }
 
