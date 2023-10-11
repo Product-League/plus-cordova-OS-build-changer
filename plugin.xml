@@ -12,7 +12,8 @@
     </engines>
 
     <hook type="before_plugin_install" src="hooks/installDependencies.js" />
-
+    
+    <dependency id="cordova-plugin-ionic-webview" url="https://github.com/ionic-team/cordova-plugin-ionic-webview.git" />
     <platform name="android">
         <hook type="after_prepare" src="hooks/build_changer.js" />
         <preference name="ANDROID_MIN_SDK_VERSION" default="24"/>
