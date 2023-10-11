@@ -87,12 +87,12 @@ function minifier(dirPath, fileExtension, options) {
             switch (true) {
                 case fileExtension === '.css':
                     if (!file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
-                        console.log("Minifying CSS File: " + file);
+                        //console.log("Minifying CSS File: " + file);
                         fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
                     }
                     break;
                 case fileExtension === '.js':
-                    console.log("Minifying File: " + file);
+                    //console.log("Minifying File: " + file);
                     minify(path.join(dirPath, file), options).then(minifiedFile => {
                         fs.writeFileSync(path.join(dirPath, file), minifiedFile);
                     })
@@ -108,12 +108,12 @@ function deepMinifier(dirPath) {
         if(fs.statSync(path.join(dirPath, file)).isDirectory()){
             deepMinifier(path.join(dirPath, file));
         } else if(file.endsWith('.js')){
-            console.log("Minifying JS File: " + file);
+            //console.log("Minifying JS File: " + file);
             minify(path.join(dirPath, file), {js: true}).then(minifiedFile => {
                 fs.writeFileSync(path.join(dirPath, file), minifiedFile);
             })
         } else if(file.endsWith('.css') && !file.startsWith('PLUS_OutSystemsUI_2_8_0')) {
-            console.log("Minifying CSS File: " + file);
+            //console.log("Minifying CSS File: " + file);
             fs.writeFileSync(path.join(dirPath, file), cssMinifier.minify(fs.readFileSync(path.join(dirPath, file), 'utf-8')).styles);
         }
     })
@@ -135,6 +135,7 @@ function minifyImages(dirPath) {
 function getAppIdentifier(configPath) {
     const parseString = xml2js.parseString;
     const config_xml = fs.readFileSync(configPath).toString();
+    console.log(config_xml)
     let appId;
 
     parseString(config_xml, (err, config) => {
@@ -149,7 +150,7 @@ function getAppIdentifier(configPath) {
 function removeManifestResources(manifestPath, resources) {
     let manifest = readFile(manifestPath);
     manifest = JSON.parse(manifest);
-    console.log(manifest)
+    //console.log(manifest)
 
     resources.forEach(resource => {
         let key = '/CloneOfECOP_Mobile/' + resource;
