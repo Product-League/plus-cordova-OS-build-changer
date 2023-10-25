@@ -11,7 +11,7 @@ module.exports = function (context) {
   //Indexes Changer
   //let indexFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + confs.indexFile);
   //utils.indexReplacer(context.opts.projectRoot + confs.iosPath + confs.indexFile, indexFileContent);
-  utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile.index.js");
+  utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/CloneOfECOP_MobileRafaNavigationPoC.index.js");
 
   //File minification
   utils.deepMinifier(context.opts.projectRoot + confs.iosPath);
