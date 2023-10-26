@@ -142,6 +142,7 @@ function getAppIdentifier(configPath) {
         if (err) return console.error(err);
 
         console.log("App identifier: " + config['widget']['$'].id);
+        console.log("App name: " + config['widget']['name'])
         appId = config['widget']['$'].id;
     })
     return appId;
