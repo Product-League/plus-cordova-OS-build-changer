@@ -137,7 +137,7 @@ function getAppIdentifier(configPath) {
     const parseString = xml2js.parseString;
     const config_xml = fs.readFileSync(configPath).toString();
     let appId;
-
+    console.log("Config xml: " + config_xml);
     parseString(config_xml, (err, config) => {
         if (err) return console.error(err);
 
