@@ -16,7 +16,7 @@ module.exports = function (context) {
     //Indexes Changer
     let indexFileContent = utils.readFile(context.opts.projectRoot + confs.androidPath + confs.indexFile);
     utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.indexFile, indexFileContent);
-    utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/CloneOfECOP_MobileRafaNavigationPoC.index.js");
+    utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/CloneOfECOP_MobileRestorePosition.index.js");
 
     //File minification
     utils.deepMinifier(context.opts.projectRoot + confs.androidPath);
