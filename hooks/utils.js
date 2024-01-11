@@ -20,7 +20,7 @@ const configs = {
     androidMainPath: "/platforms/android/app/src/main/",
     androidAppPath: "/platforms/android/app/",
     configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
-    configPathIos: "/platforms/ios/ECOP Mobile/config.xml",
+    configPathIos: "/platforms/ios/PLUS/config.xml",
     androidManifest: "AndroidManifest.xml",
     iosPath: "/platforms/ios/www/",
     iosMainPath: "/platforms/ios/",
