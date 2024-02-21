@@ -13,9 +13,6 @@ module.exports = function (context) {
     //Removal of unused resources
     utils.removeUnusedFolders(context.opts.projectRoot, context.opts.projectRoot + confs.androidPath, appId, true);
 
-    //Indexes Changer
-    utils.indexJSChanger(context.opts.projectRoot + confs.androidPath + "scripts/ECOP_Mobile.index.js");
-
     //File minification
     utils.deepMinifier(context.opts.projectRoot + confs.androidPath);
     utils.minifyImages(context.opts.projectRoot + confs.androidPath + 'img');
