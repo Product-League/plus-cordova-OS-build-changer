@@ -8,11 +8,6 @@ module.exports = function (context) {
   //Removal of unused resources
   utils.removeUnusedFolders(context.opts.projectRoot, context.opts.projectRoot + confs.iosPath, appId, false);
 
-  //Indexes Changer
-  //let indexFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + confs.indexFile);
-  //utils.indexReplacer(context.opts.projectRoot + confs.iosPath + confs.indexFile, indexFileContent);
-  utils.indexJSChanger(context.opts.projectRoot + confs.iosPath + "scripts/ECOP_Mobile.index.js");
-
   //File minification
   utils.deepMinifier(context.opts.projectRoot + confs.iosPath);
   utils.minifyImages(context.opts.projectRoot + confs.iosPath + 'img');
