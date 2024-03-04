@@ -16,6 +16,10 @@ module.exports = function (context) {
     //File minification
     utils.deepMinifier(context.opts.projectRoot + confs.androidPath);
     utils.minifyImages(context.opts.projectRoot + confs.androidPath + 'img');
+    
+    //Indexes Changer
+    let indexFileContent = utils.readFile(context.opts.projectRoot + confs.androidPath + confs.indexFile);
+    utils.indexReplacer(context.opts.projectRoot + confs.androidPath + confs.indexFile, indexFileContent);
 
     //Error File Changer
     let errorFileContent = utils.readFile(context.opts.projectRoot + confs.androidPath + confs.errorFile);
