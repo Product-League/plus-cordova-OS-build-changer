@@ -69,16 +69,16 @@ function indexReplacer(indexPath, content) {
     content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile.index.js')
     console.log('index async')
 
-    content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
-    console.log("Index: " + content);
+    //content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
+    //console.log("Index: " + content);
 
     fs.writeFileSync(indexPath, content, "utf-8");
 }
 
 function indexJSChanger(indexJSPath) {
     let indexjs = readFile(indexJSPath);
-    indexjs = indexjs.replace(', NullDebugger', "");
-    indexjs = indexjs.replace(', "OutSystems/ClientRuntime/NullDebugger"', "");
+    //indexjs = indexjs.replace(', NullDebugger', "");
+    //indexjs = indexjs.replace(', "OutSystems/ClientRuntime/NullDebugger"', "");
     fs.writeFileSync(indexJSPath, indexjs, 'utf-8');
 }
 
