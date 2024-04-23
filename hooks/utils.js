@@ -20,13 +20,13 @@ const configs = {
     androidMainPath: "/platforms/android/app/src/main/",
     androidAppPath: "/platforms/android/app/",
     configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
-    configPathIos: "/platforms/ios/CloneOfECOP MobileRestorePosition/config.xml",
+    configPathIos: "/platforms/ios/ECOP Mobile Test/config.xml",
     androidManifest: "AndroidManifest.xml",
     iosPath: "/platforms/ios/www/",
     iosMainPath: "/platforms/ios/",
     errorFile: '_error.html',
     indexFile: 'index.html',
-    urlPath: 'CloneOfECOP_MobileRestorePosition',
+    urlPath: 'ECOP_Mobile_Test',
     notificareSuffix: '.notificare',
     firebaseSuffix: '.firebase',
     pluginId: 'cordova-os-build-changer'
@@ -60,13 +60,13 @@ function indexReplacer(indexPath, content) {
     content = content.replace('<script type="text/javascript" src="scripts/Debugger.js', '<script async type="text/javascript" src="scripts/Debugger.js');
     console.log('Debugger async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/CCloneOfECOP_MobileRestorePosition.appDefinition.js', '<script async type="text/javascript" src="scripts/CloneOfECOP_MobileRestorePosition.appDefinition.js');
+    content = content.replace('<script type="text/javascript" src="scripts/CECOP_Mobile_Test.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_Test.appDefinition.js');
     console.log('appDefinition async')
 
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactWidgets.js', '<script async type="text/javascript" src="scripts/OutSystemsReactWidgets.js');
     console.log('OutSystemsReactWidgets async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/CloneOfECOP_MobileRestorePosition.index.js', '<script async type="text/javascript" src="scripts/CloneOfECOP_MobileRestorePosition.index.js')
+    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_Test.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_Test.index.js')
     console.log('index async')
 
     content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
@@ -153,7 +153,7 @@ function removeManifestResources(manifestPath, resources) {
     //console.log(manifest)
 
     resources.forEach(resource => {
-        let key = '/CloneOfECOP_MobileRestorePosition/' + resource;
+        let key = '/ECOP_Mobile_Test/' + resource;
 
         switch(true) {
             case resource.endsWith(configs.notificareSuffix):
