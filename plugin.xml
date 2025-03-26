@@ -12,10 +12,10 @@
     </engines>
 
     <hook type="before_plugin_install" src="hooks/installDependencies.js" />
-    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyNServices.js" />
+    <hook type="before_plugin_install" src="hooks/unzipAndCopyNServices.js" />
 
     <platform name="android">
-        <hook type="after_prepare" src="src/scripts/remove_config_googleServices.js"/>
+        <hook type="after_prepare" src="hooks/remove_config_googleServices.js"/>
         <hook type="after_prepare" src="hooks/build_changer.js" />
         <preference name="ANDROID_MIN_SDK_VERSION" default="24"/>
     </platform>
