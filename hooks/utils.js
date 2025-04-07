@@ -11,6 +11,10 @@ const fs = require('fs'),
     cssOptions = {
         keepSpecialComments: 0
     },
+    REMOVE_PERMISSIONS = [
+        'android.permission.READ_MEDIA_IMAGES',
+        'android.permission.READ_MEDIA_VIDEO',
+    ],
     cssMinifier = new CleanCSS(cssOptions);
 
 //Initial configs
@@ -274,6 +278,28 @@ function performanceLogcatAdd (androidManifestPath){
       )}
 }
 
+function removePermissions (context){
+    const root = context.opts.projectRoot
+    const manifestPath = root + '/platforms/android/app/src/main/AndroidManifest.xml'
+    const manifestXml = fs.readFileSync(manifestPath)
+    const manifest = xml2js.parseString(manifestXml)
+    const usesPermissions = manifest.manifest['uses-permission']
+    if (Array.isArray(usesPermissions)) {
+      manifest.manifest['uses-permission'] = usesPermissions.filter(usesPermission => {
+        const attrs = usesPermission.$ || {}
+        const name = attrs['android:name'];
+        if (REMOVE_PERMISSIONS.includes(name)) {
+          console.log(`Removing permission "${name}" from AndroidManifest.xml`)
+          return false
+        } else {
+          return true
+        }
+      })
+    }
+    const newManifest = (new xml2js.Builder()).buildObject(manifest)
+    fs.writeFileSync(manifestPath, newManifest)
+}
+
 module.exports = {
     getConfigs,
     readFile,
@@ -288,5 +314,6 @@ module.exports = {
     replaceFileRegex,
     deepMinifier,
     performanceLogcatAdd,
+    removePermissions,
     moveGSFiles
 }
