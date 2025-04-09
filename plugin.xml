@@ -30,6 +30,7 @@
     <dependency id="cordova-plugin-iroot" url="https://github.com/Product-League/cordova-plugin-iroot.git#1.0"/>
     <dependency id="cordova-plugin-speechrecognition" url="https://github.com/Product-League/cordova-plugin-speechrecognition.git#1.0"/>
     <dependency id="cordova-plugin-geolocation" url="https://github.com/OutSystems/cordova-plugin-geolocation#4.0.1-OS11"/>
+    <dependency id="cordova-OS-firebase-performance" url="https://github.com/Product-League/plus-cordova-OS-FirebasePerformance.git#1.1"/>
     <!--END Plugin Dependencies-->
 
 
