@@ -254,7 +254,7 @@ function minSDKChangerAndroid(projectRoot) {
     console.log("Changed Android MinSDKVersion!");
 }
 
-function performanceLogcatAdd (androidManifestPath){
+function performanceLogcatAddAndRemovePermissions (androidManifestPath){
     const parseString = xml2js.parseString;
     const builder = new xml2js.Builder();
     const filePath = androidManifestPath;
@@ -273,7 +273,21 @@ function performanceLogcatAdd (androidManifestPath){
         
   
         manifestRoot['application'][0]['meta-data'].push({'$': {'android:name': 'firebase_performance_logcat_enabled', 'android:value': 'true'}});
-          fs.writeFileSync(androidManifestPath, builder.buildObject(manifest));
+
+        const usesPermissions = manifestRoot['uses-permission'];
+        if (Array.isArray(usesPermissions)) {
+          manifestRoot['uses-permission'] = usesPermissions.filter(usesPermission => {
+            const attrs = usesPermission.$ || {}
+            const name = attrs['android:name'];
+            if (REMOVE_PERMISSIONS.includes(name)) {
+              console.log(`Removing permission "${name}" from AndroidManifest.xml`)
+              return false
+            } else {
+              return true
+            }
+          })
+        }
+        fs.writeFileSync(androidManifestPath, builder.buildObject(manifest));
         }
       )}
 }
@@ -313,7 +327,6 @@ module.exports = {
     minSDKChangerAndroid,
     replaceFileRegex,
     deepMinifier,
-    performanceLogcatAdd,
-    removePermissions,
+    performanceLogcatAddAndRemovePermissions,
     moveGSFiles
 }
