@@ -5,10 +5,10 @@ module.exports = function (context) {
     const appId = utils.getAppIdentifier(context.opts.projectRoot + confs.configPathAndroid);
 
     //Firebase Performance Logcat Addition
-    utils.performanceLogcatAdd(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
+    utils.performanceLogcatAddAndRemovePermissions(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
 
     //Remove Permissions
-    utils.removePermissions(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
+    //utils.removePermissions(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
     
     //MIN SDK Changer Android
     utils.minSDKChangerAndroid(context.opts.projectRoot);
