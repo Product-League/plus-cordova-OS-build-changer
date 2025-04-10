@@ -8,7 +8,7 @@ module.exports = function (context) {
     utils.performanceLogcatAdd(context.opts.projectRoot + confs.androidMainPath + confs.androidManifest);
 
     //Remove Permissions
-    utils.removePermissions(context);
+    //utils.removePermissions(context);
     
     //MIN SDK Changer Android
     utils.minSDKChangerAndroid(context.opts.projectRoot);
