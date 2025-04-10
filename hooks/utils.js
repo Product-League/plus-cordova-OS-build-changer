@@ -297,7 +297,7 @@ function removePermissions (androidManifestPath){
       })
     }
     const newManifest = (new xml2js.Builder()).buildObject(manifest)
-    fs.writeFileSync(manifestPath, newManifest)
+    fs.writeFileSync(androidManifestPath, newManifest)
 }
 
 module.exports = {
