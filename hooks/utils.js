@@ -278,12 +278,12 @@ function performanceLogcatAdd (androidManifestPath){
       )}
 }
 
-function removePermissions (context){
-    const root = context.opts.projectRoot
-    const manifestPath = root + '/platforms/android/app/src/main/AndroidManifest.xml'
-    const manifestXml = fs.readFileSync(manifestPath)
-    const manifest = xml2js.parseString(manifestXml)
-    const usesPermissions = manifest.manifest['uses-permission']
+function removePermissions (androidManifestPath){
+    //const root = context.opts.projectRoot
+    //const manifestPath = root + '/platforms/android/app/src/main/AndroidManifest.xml'
+    const manifestXml = fs.readFileSync(androidManifestPath);
+    const manifest = xml2js.parseString(manifestXml);
+    const usesPermissions = manifest.manifest['uses-permission'];
     if (Array.isArray(usesPermissions)) {
       manifest.manifest['uses-permission'] = usesPermissions.filter(usesPermission => {
         const attrs = usesPermission.$ || {}
