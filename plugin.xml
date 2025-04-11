@@ -33,6 +33,7 @@
     <dependency id="cordova-OS-firebase-performance" url="https://github.com/Product-League/plus-cordova-OS-FirebasePerformance.git#1.1"/>
     <dependency id="cordova-plugin-network-information" url="https://github.com/apache/cordova-plugin-network-information.git"/>
     <dependency id="cordova-plugin-firebase-crash" url="https://github.com/Product-League/cordova-plugin-firebase-crashlytics.git#1.2"/>
+    <dependency id="cordova-plugin-x-socialsharing" url="https://github.com/Product-League/cordova-plugin-social-sharing.git#1.0"/>
     <!--END Plugin Dependencies-->
 
 
