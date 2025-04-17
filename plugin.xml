@@ -38,6 +38,7 @@
 
 
     <platform name="android">
+	<resource-file src="notificare-services.json" target="app/notificare-services.json" />
 	<!--Notificare Hook -->
         <hook type="after_prepare" src="hooks/remove_config_googleServices.js"/>
 	    
