@@ -30,7 +30,7 @@ const configs = {
     iosMainPath: "/platforms/ios/",
     errorFile: '_error.html',
     indexFile: 'index.html',
-    urlPath: 'ECOP_Mobile_TeamC_TeamC',
+    urlPath: 'ECOP_Mobile_TeamC',
     notificareSuffix: '.notificare',
     firebaseSuffix: '.firebase',
     pluginId: 'cordova-os-build-changer'
