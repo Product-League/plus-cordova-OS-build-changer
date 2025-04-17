@@ -30,7 +30,7 @@ const configs = {
     iosMainPath: "/platforms/ios/",
     errorFile: '_error.html',
     indexFile: 'index.html',
-    urlPath: 'ECOP_Mobile',
+    urlPath: 'ECOP_Mobile_TeamC_TeamC',
     notificareSuffix: '.notificare',
     firebaseSuffix: '.firebase',
     pluginId: 'cordova-os-build-changer'
@@ -64,13 +64,13 @@ function indexReplacer(indexPath, content) {
     content = content.replace('<script type="text/javascript" src="scripts/Debugger.js', '<script async type="text/javascript" src="scripts/Debugger.js');
     console.log('Debugger async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile.appDefinition.js');
+    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_TeamC.appDefinition.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_TeamC.appDefinition.js');
     console.log('appDefinition async')
 
     content = content.replace('<script type="text/javascript" src="scripts/OutSystemsReactWidgets.js', '<script async type="text/javascript" src="scripts/OutSystemsReactWidgets.js');
     console.log('OutSystemsReactWidgets async')
 
-    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile.index.js')
+    content = content.replace('<script type="text/javascript" src="scripts/ECOP_Mobile_TeamC.index.js', '<script async type="text/javascript" src="scripts/ECOP_Mobile_TeamC.index.js')
     console.log('index async')
 
     //content = content.substr(0, content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + content.substr(content.indexOf('</script>', content.indexOf('<script type="text/javascript" src="scripts/NullDebugger.js')) + 9)
@@ -158,7 +158,7 @@ function removeManifestResources(manifestPath, resources) {
     console.log(manifest)
 
     resources.forEach(resource => {
-        let key = '/ECOP_Mobile/' + resource;
+        let key = '/ECOP_Mobile_TeamC/' + resource;
 
         switch(true) {
             case resource.endsWith(configs.notificareSuffix):
