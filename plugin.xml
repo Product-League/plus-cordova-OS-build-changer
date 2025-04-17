@@ -46,6 +46,7 @@
     </platform>
 
     <platform name="ios">
+	<resource-file src="NotificareServices.plist" target="NotificareServices.plist" />
     <!-- plist file changer-->
     	<config-file target="*-Info.plist" parent="UIUserInterfaceStyle">
             <string>Light</string>
