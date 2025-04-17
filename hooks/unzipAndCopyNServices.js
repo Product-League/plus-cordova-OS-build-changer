@@ -51,7 +51,7 @@ module.exports = function(context) {
   }
 
   var sourceFilePath = path.join(targetPath, fileName);
-  var destFilePath = path.join('source/plugins/cordova-plugin-notificare-push', fileName);
+  var destFilePath = path.join(context.opts.plugin.dir, fileName);
 
   if(!utils.checkIfFolderExists(destFilePath)){
     utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
