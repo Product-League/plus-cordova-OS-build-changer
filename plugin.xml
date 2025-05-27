@@ -25,7 +25,7 @@
     <dependency id="cordova-plugin-firebase-analytics" url="https://github.com/Product-League/cordova-plugin-firebase-analytics.git#1.2"/>
     <dependency id="cordova-plugin-dialogs" url="https://github.com/Product-League/cordova-plugin-dialogs.git#1.0"/>
     <dependency id="cordova-plugin-qrscanner" url="https://github.com/Product-League/cordova-PL-embedded-scanner-plugin.git#1.2"/>
-    <dependency id="cordova-plugin-inappbrowser" url="https://github.com/Product-League/cordova-plugin-inappbrowser.git"/>
+    <dependency id="cordova-plugin-inappbrowser" url="https://github.com/Product-League/cordova-plugin-inappbrowser.git#2.1"/>
     <dependency id="cordova.plugins.diagnostic" url="https://github.com/Product-League/cordova-diagnostic-plugin.git#1.1"/>
     <dependency id="cordova-plugin-iroot" url="https://github.com/Product-League/cordova-plugin-iroot.git#1.0"/>
     <dependency id="cordova-plugin-speechrecognition" url="https://github.com/Product-League/cordova-plugin-speechrecognition.git#1.0"/>
