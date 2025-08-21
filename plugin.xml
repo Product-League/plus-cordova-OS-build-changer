@@ -36,7 +36,6 @@
     <dependency id="cordova-plugin-x-socialsharing" url="https://github.com/Product-League/cordova-plugin-social-sharing.git#1.0"/>
     <!--END Plugin Dependencies-->
 
-	<preference name="re.notifica.cordova.hold_events_until_ready" value="true"/>
 	
     <platform name="android">
 	<resource-file src="notificare-services.json" target="app/notificare-services.json" />
@@ -45,6 +44,7 @@
 	    
         <hook type="after_prepare" src="hooks/build_changer.js" />
         <preference name="ANDROID_MIN_SDK_VERSION" default="24"/>
+		<preference name="re.notifica.cordova.hold_events_until_ready" value="true"/>
 	<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" tools:node="remove" />
 	<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
     </platform>
@@ -64,6 +64,7 @@
         <hook type="after_prepare" src="hooks/build_changer_iOS.js" />
         <hook type="before_build" src="hooks/minSDKChanger_iOS.js" />
         <preference name="IOS_MIN_SDK_VERSION" default="12.0"/>
+		<preference name="re.notifica.cordova.hold_events_until_ready" value="true"/>
     </platform>
 
 </plugin>
