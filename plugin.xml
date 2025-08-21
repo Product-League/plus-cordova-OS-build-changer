@@ -36,7 +36,8 @@
     <dependency id="cordova-plugin-x-socialsharing" url="https://github.com/Product-League/cordova-plugin-social-sharing.git#1.0"/>
     <!--END Plugin Dependencies-->
 
-
+	<preference name="re.notifica.cordova.hold_events_until_ready" value="true"/>
+	
     <platform name="android">
 	<resource-file src="notificare-services.json" target="app/notificare-services.json" />
 	<!--Notificare Hook -->
