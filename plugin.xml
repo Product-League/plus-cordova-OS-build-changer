@@ -22,7 +22,7 @@
     <dependency id="cordova-plugin-app-review" url="https://github.com/Product-League/cordova-app-review-plugin.git"/>
     <dependency id="cordova-plugin-brightness" url="https://github.com/Product-League/cordova-plugin-brightness.git#1.0"/>
     <dependency id="cordova-plugin-cookieemperor" url="https://github.com/psolipaPL/cordova-cookie-emperor.git"/>
-    <dependency id="cordova-plugin-firebase-analytics" url="https://github.com/Product-League/cordova-plugin-firebase-analytics.git"/>
+    <dependency id="cordova-plugin-firebase-analytics" url="https://github.com/Product-League/cordova-plugin-firebase-analytics.git#1.3"/>
     <dependency id="cordova-plugin-dialogs" url="https://github.com/Product-League/cordova-plugin-dialogs.git#1.0"/>
     <dependency id="cordova-plugin-qrscanner" url="https://github.com/Product-League/cordova-PL-embedded-scanner-plugin.git#1.2"/>
     <dependency id="cordova-plugin-inappbrowser" url="https://github.com/Product-League/cordova-plugin-inappbrowser.git#2.1"/>
