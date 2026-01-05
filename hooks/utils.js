@@ -2,11 +2,11 @@ const fs = require('fs'),
     path = require('path'),
     minify = require('minify'),
     CleanCSS = require('clean-css'),
-    imagemin = require('imagemin'),
+    //imagemin = require('imagemin'),
     //imageminPng = require('imagemin-pngquant'),
-    imageminJpeg = require('imagemin-jpegtran'),
-    imageminSVG = require('imagemin-svgo'),
-    imageminGIF = require('imagemin-gifsicle'),
+    //imageminJpeg = require('imagemin-jpegtran'),
+    //imageminSVG = require('imagemin-svgo'),
+    //imageminGIF = require('imagemin-gifsicle'),
     xml2js = require('xml2js'),
     cssOptions = {
         keepSpecialComments: 0
@@ -124,18 +124,18 @@ function deepMinifier(dirPath) {
     })
 }
 
-function minifyImages(dirPath) {
-    imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
-        cwd: dirPath,
-        destination: dirPath,
-        plugins: [
+//function minifyImages(dirPath) {
+    //imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
+        //cwd: dirPath,
+        //destination: dirPath,
+        //plugins: [
             //imageminPng(),
-            imageminJpeg(),
-            imageminSVG(),
-            imageminGIF()
-        ]
-    }).then(() => console.log('Images minified'));
-}
+            //imageminJpeg(),
+            //imageminSVG(),
+            //imageminGIF()
+        //]
+    //}).then(() => console.log('Images minified'));
+//}
 
 function getAppIdentifier(configPath) {
     const parseString = xml2js.parseString;
