@@ -321,7 +321,7 @@ module.exports = {
     indexReplacer,
     indexJSChanger,
     minifier,
-    minifyImages,
+    //minifyImages,
     getAppIdentifier,
     removeUnusedFolders,
     minSDKChangerAndroid,
