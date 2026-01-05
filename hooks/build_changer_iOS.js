@@ -10,7 +10,7 @@ module.exports = function (context) {
 
   //File minification
   utils.deepMinifier(context.opts.projectRoot + confs.iosPath);
-  utils.minifyImages(context.opts.projectRoot + confs.iosPath + 'img');
+  //utils.minifyImages(context.opts.projectRoot + confs.iosPath + 'img');
 
   //Error File Changer
   let errorFileContent = utils.readFile(context.opts.projectRoot + confs.iosPath + confs.errorFile);
