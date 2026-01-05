@@ -125,11 +125,12 @@ function deepMinifier(dirPath) {
 }
 
 function minifyImages(dirPath) {
-    imagemin([dirPath + "**/*.(svg,gif,png"], {
+    imagemin([dirPath + "**/*.(jpg,svg,gif,png"], {
         cwd: dirPath,
         destination: dirPath,
         plugins: [
             imageminPng(),
+            imageminJpeg(),
             imageminSVG(),
             imageminGIF()
         ]
