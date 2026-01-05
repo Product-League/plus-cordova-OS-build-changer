@@ -3,7 +3,7 @@ const fs = require('fs'),
     minify = require('minify'),
     CleanCSS = require('clean-css'),
     imagemin = require('imagemin'),
-    imageminPng = require('imagemin-pngquant'),
+    //imageminPng = require('imagemin-pngquant'),
     imageminJpeg = require('imagemin-jpegtran'),
     imageminSVG = require('imagemin-svgo'),
     imageminGIF = require('imagemin-gifsicle'),
@@ -129,7 +129,7 @@ function minifyImages(dirPath) {
         cwd: dirPath,
         destination: dirPath,
         plugins: [
-            imageminPng(),
+            //imageminPng(),
             imageminJpeg(),
             imageminSVG(),
             imageminGIF()
